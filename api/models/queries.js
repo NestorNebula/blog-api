@@ -15,8 +15,17 @@ const createUser = async (user) => {
   });
 };
 
+const getUserByUsermail = async (username) => {
+  const user = await prisma.user.findFirst({
+    where: {
+      OR: [{ username }, { email: username }],
+    },
+  });
+  return user;
+};
+
 // Post Queries
 
 // Comment Queries
 
-module.exports = { createUser };
+module.exports = { createUser, getUserByUsermail };
