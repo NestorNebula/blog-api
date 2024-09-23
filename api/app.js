@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config();
 const routes = require('./routes/routes');
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', routes.auth);
