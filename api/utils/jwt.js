@@ -11,4 +11,13 @@ const getRefreshToken = (user) => {
   return token;
 };
 
-module.exports = { getToken, getRefreshToken };
+const verifyRefreshToken = (token) => {
+  try {
+    const { id } = jwt.verify(token, process.env.RT);
+    return id;
+  } catch {
+    return false;
+  }
+};
+
+module.exports = { getToken, getRefreshToken, verifyRefreshToken };
