@@ -48,7 +48,13 @@ const updateUser = async (id, user) => {
 const getUserPosts = async (id) => {
   const posts = await prisma.post.findMany({
     where: { userId: id },
-    include: { user: true },
+    include: {
+      user: {
+        select: {
+          username: true,
+        },
+      },
+    },
   });
   return posts;
 };
@@ -56,7 +62,11 @@ const getUserPosts = async (id) => {
 const getAllPosts = async (id) => {
   const posts = await prisma.post.findMany({
     include: {
-      user: true,
+      user: {
+        select: {
+          username: true,
+        },
+      },
       Comments: true,
     },
   });
