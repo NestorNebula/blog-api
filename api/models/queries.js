@@ -63,6 +63,19 @@ const getAllPosts = async (id) => {
   return posts;
 };
 
+const createPost = async (post) => {
+  await prisma.post.create({
+    data: {
+      title: post.title,
+      content: post.content,
+      published: post.published,
+      user: {
+        connect: { id: post.userId },
+      },
+    },
+  });
+};
+
 // Comment Queries
 
 module.exports = {
@@ -72,4 +85,5 @@ module.exports = {
   updateUser,
   getUserPosts,
   getAllPosts,
+  createPost,
 };
