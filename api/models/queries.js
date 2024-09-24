@@ -45,6 +45,20 @@ const updateUser = async (id, user) => {
 
 // Post Queries
 
+const getUserPosts = async (id) => {
+  const posts = await prisma.post.findMany({
+    where: { userId: id },
+    include: { user: true },
+  });
+  return posts;
+};
+
 // Comment Queries
 
-module.exports = { createUser, getUserByUsermail, getUserById, updateUser };
+module.exports = {
+  createUser,
+  getUserByUsermail,
+  getUserById,
+  updateUser,
+  getUserPosts,
+};
