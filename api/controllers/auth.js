@@ -41,7 +41,12 @@ const logIn = async (req, res) => {
     return res.status(400).json('Incorrect password');
   }
   const token = jwt.getToken({ id: user.id });
-  res.status(200).json({ token });
+  res.cookie('token', token, {
+    httpOnly: true,
+    maxAge: 900000,
+    sameSite: true,
+  });
+  res.sendStatus(200);
 };
 
 module.exports = { signUp, logIn };
