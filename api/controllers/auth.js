@@ -41,9 +41,17 @@ const logIn = async (req, res) => {
     return res.status(400).json('Incorrect password');
   }
   const token = jwt.getToken({ id: user.id });
+  const refreshToken = jwt.getRefreshToken({ id: user.id });
+  const date = new Date(Date.now());
+  date.setDate(date.getDate() + 7);
   res.cookie('token', token, {
     httpOnly: true,
     maxAge: 900000,
+    sameSite: true,
+  });
+  res.cookie('refresh', refreshToken, {
+    httpOnly: true,
+    expires: date,
     sameSite: true,
   });
   res.sendStatus(200);

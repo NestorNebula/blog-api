@@ -6,4 +6,9 @@ const getToken = (user) => {
   return token;
 };
 
-module.exports = { getToken };
+const getRefreshToken = (user) => {
+  const token = jwt.sign(user, process.env.RT, { expiresIn: '7d' });
+  return token;
+};
+
+module.exports = { getToken, getRefreshToken };
