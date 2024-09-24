@@ -30,6 +30,16 @@ const signUp = [
   },
 ];
 
-const logIn = (req, res) => {};
+const logIn = async (req, res) => {
+  const user = await prisma.getUserByUsermail(req.body.username);
+  if (!user) {
+    return res.status(400).json('Incorrect username or email');
+  }
+  const match = await bcrypt.compare(req.body.password, user.password);
+  if (!match) {
+    return res.status(400).json('Incorrect password');
+  }
+  res.status(200).json('Successful connection');
+};
 
 module.exports = { signUp, logIn };
