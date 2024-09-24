@@ -24,8 +24,15 @@ const getUserByUsermail = async (username) => {
   return user;
 };
 
+const getUserById = async (id) => {
+  const user = await prisma.user.findUnique({
+    where: { id },
+  });
+  return user;
+};
+
 // Post Queries
 
 // Comment Queries
 
-module.exports = { createUser, getUserByUsermail };
+module.exports = { createUser, getUserByUsermail, getUserById };
