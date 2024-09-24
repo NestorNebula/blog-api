@@ -16,7 +16,11 @@ app.use(
   passport.authenticate('jwt', { session: false }),
   routes.user
 );
-app.use('/posts', routes.post);
+app.use(
+  '/posts',
+  passport.authenticate('jwt', { session: false }),
+  routes.post
+);
 app.use('/comments', routes.comment);
 
 app.listen(process.env.PORT);
