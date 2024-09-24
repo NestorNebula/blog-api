@@ -40,7 +40,7 @@ const logIn = async (req, res) => {
   if (!match) {
     return res.status(400).json('Incorrect password');
   }
-  const token = jwt.getToken(user);
+  const token = jwt.getToken({ id: user.id });
   res.status(200).json({ token });
 };
 
