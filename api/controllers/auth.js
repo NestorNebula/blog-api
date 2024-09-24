@@ -53,8 +53,25 @@ const logIn = async (req, res) => {
     httpOnly: true,
     expires: date,
     sameSite: true,
+    path: '/auth',
   });
   res.sendStatus(200);
 };
 
-module.exports = { signUp, logIn };
+const refreshAccessToken = (req, res) => {
+  if (req.cookies['refresh']) {
+    const result = jwt.verifyRefreshToken(req.cookies['refresh']);
+    if (result) {
+      const token = jwt.getToken({ id: result });
+      res.cookie('token', token, {
+        httpOnly: true,
+        maxAge: 900000,
+        sameSite: true,
+      });
+      return res.sendStatus(200);
+    }
+  }
+  res.sendStatus(401);
+};
+
+module.exports = { signUp, logIn, refreshAccessToken };
