@@ -2,6 +2,7 @@ require('dotenv').config();
 const { body } = require('express-validator');
 const bcrypt = require('bcrypt');
 const prisma = require('../models/queries');
+const jwt = require('../utils/jwt');
 
 const validateUser = [
   body('username').trim().blacklist('<>'),
@@ -39,7 +40,8 @@ const logIn = async (req, res) => {
   if (!match) {
     return res.status(400).json('Incorrect password');
   }
-  res.status(200).json('Successful connection');
+  const token = jwt.getToken(user);
+  res.status(200).json({ token });
 };
 
 module.exports = { signUp, logIn };
