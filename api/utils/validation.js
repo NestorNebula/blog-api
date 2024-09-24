@@ -7,4 +7,9 @@ const validateUser = [
   body('role').trim(),
 ];
 
-module.exports = { validateUser };
+const validatePost = [
+  body('title').trim().blacklist('<>'),
+  body('content').trim().blacklist('<>'),
+];
+
+module.exports = { validateUser, validatePost };
