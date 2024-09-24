@@ -45,7 +45,7 @@ const getUserPosts = async (req, res) => {
     return res.sendStatus(404);
   }
   const posts = await prisma.getUserPosts(+req.params.userId);
-  res.json({ posts });
+  res.json(posts);
 };
 
 module.exports = { getUser, updateUser, getUserPosts };
