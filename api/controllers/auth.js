@@ -1,15 +1,8 @@
 require('dotenv').config();
-const { body } = require('express-validator');
 const bcrypt = require('bcrypt');
 const prisma = require('../models/queries');
 const jwt = require('../utils/jwt');
-
-const validateUser = [
-  body('username').trim().blacklist('<>'),
-  body('email').trim().blacklist('<>'),
-  body('password').trim(),
-  body('role').trim(),
-];
+const { validateUser } = require('../utils/validation');
 
 const signUp = [
   validateUser,
