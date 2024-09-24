@@ -20,6 +20,10 @@ const getUserByUsermail = async (username) => {
     where: {
       OR: [{ username }, { email: username }],
     },
+    include: {
+      Posts: true,
+      Comments: true,
+    },
   });
   return user;
 };
