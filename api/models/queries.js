@@ -96,6 +96,17 @@ const getPostById = async (id) => {
   return post;
 };
 
+const updatePost = async (id, post) => {
+  await prisma.post.update({
+    where: { id },
+    data: {
+      title: post.title,
+      content: post.content,
+      published: post.published,
+    },
+  });
+};
+
 // Comment Queries
 
 module.exports = {
@@ -107,4 +118,5 @@ module.exports = {
   getAllPosts,
   createPost,
   getPostById,
+  updatePost,
 };
