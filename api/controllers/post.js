@@ -46,7 +46,19 @@ const deletePost = async (req, res) => {
   res.sendStatus(200);
 };
 
-const postComment = (req, res) => {};
+const postComment = [
+  validatePost,
+  async (req, res) => {
+    const post = await prisma.getPostById(+req.params.postId);
+    if (!post) return res.sendStatus(400);
+    await prisma.createComment({
+      content: req.body.content,
+      postId: +req.params.postId,
+      userId: req.user.id,
+    });
+    res.sendStatus(201);
+  },
+];
 
 module.exports = {
   getPosts,
