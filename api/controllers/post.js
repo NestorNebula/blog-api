@@ -46,4 +46,13 @@ const deletePost = async (req, res) => {
   res.sendStatus(200);
 };
 
-module.exports = { getPosts, postPost, getPost, updatePost, deletePost };
+const postComment = (req, res) => {};
+
+module.exports = {
+  getPosts,
+  postPost,
+  getPost,
+  updatePost,
+  deletePost,
+  postComment,
+};
