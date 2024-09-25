@@ -20,7 +20,11 @@ const postPost = [
   },
 ];
 
-const getPost = (req, res) => {};
+const getPost = async (req, res) => {
+  const post = await prisma.getPostById(+req.params.postId);
+  if (!post) return res.sendStatus(404);
+  return res.json(post);
+};
 
 const updatePost = (req, res) => {};
 
