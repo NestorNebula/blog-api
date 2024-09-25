@@ -107,6 +107,12 @@ const updatePost = async (id, post) => {
   });
 };
 
+const deletePost = async (id) => {
+  await prisma.post.delete({
+    where: { id },
+  });
+};
+
 // Comment Queries
 
 module.exports = {
@@ -119,4 +125,5 @@ module.exports = {
   createPost,
   getPostById,
   updatePost,
+  deletePost,
 };
