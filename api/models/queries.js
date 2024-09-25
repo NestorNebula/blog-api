@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const { connect } = require('../routes/auth');
 
 const prisma = new PrismaClient();
 
@@ -115,6 +116,20 @@ const deletePost = async (id) => {
 
 // Comment Queries
 
+const createComment = async (comment) => {
+  await prisma.comment.create({
+    data: {
+      content: comment.content,
+      post: {
+        connect: { id: comment.postId },
+      },
+      user: {
+        connect: { id: comment.userId },
+      },
+    },
+  });
+};
+
 module.exports = {
   createUser,
   getUserByUsermail,
@@ -126,4 +141,5 @@ module.exports = {
   getPostById,
   updatePost,
   deletePost,
+  createComment,
 };
