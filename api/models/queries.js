@@ -86,6 +86,16 @@ const createPost = async (post) => {
   });
 };
 
+const getPostById = async (id) => {
+  const post = await prisma.post.findUnique({
+    where: { id },
+    include: {
+      Comments: true,
+    },
+  });
+  return post;
+};
+
 // Comment Queries
 
 module.exports = {
@@ -96,4 +106,5 @@ module.exports = {
   getUserPosts,
   getAllPosts,
   createPost,
+  getPostById,
 };
