@@ -130,6 +130,13 @@ const createComment = async (comment) => {
   });
 };
 
+const getCommentById = async (id) => {
+  const comment = await prisma.comment.findUnique({
+    where: { id },
+  });
+  return comment;
+};
+
 module.exports = {
   createUser,
   getUserByUsermail,
@@ -142,4 +149,5 @@ module.exports = {
   updatePost,
   deletePost,
   createComment,
+  getCommentById,
 };
