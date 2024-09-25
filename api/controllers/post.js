@@ -38,6 +38,12 @@ const updatePost = async (req, res) => {
   res.sendStatus(201);
 };
 
-const deletePost = (req, res) => {};
+const deletePost = async (req, res) => {
+  const post = await prisma.getPostById(+req.params.postId);
+  if (!post) return res.sendStatus(404);
+  if (post.userId !== req.user.id) return res.sendStatus(403);
+  await prisma.deletePost(+req.params.postId);
+  res.sendStatus(200);
+};
 
 module.exports = { getPosts, postPost, getPost, updatePost, deletePost };
