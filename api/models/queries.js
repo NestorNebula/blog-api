@@ -137,6 +137,15 @@ const getCommentById = async (id) => {
   return comment;
 };
 
+const updateComment = async (id, comment) => {
+  await prisma.comment.update({
+    where: { id },
+    data: {
+      content: comment.content,
+    },
+  });
+};
+
 module.exports = {
   createUser,
   getUserByUsermail,
@@ -150,4 +159,5 @@ module.exports = {
   deletePost,
   createComment,
   getCommentById,
+  updateComment,
 };
