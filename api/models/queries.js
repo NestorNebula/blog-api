@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const { connect } = require('../routes/auth');
 
 const prisma = new PrismaClient();
 
