@@ -26,17 +26,20 @@ const getPost = async (req, res) => {
   res.json(post);
 };
 
-const updatePost = async (req, res) => {
-  const post = await prisma.getPostById(+req.params.postId);
-  if (!post) return res.sendStatus(404);
-  if (post.userId !== req.user.id) return res.sendStatus(403);
-  await prisma.updatePost(+req.params.postId, {
-    title: req.body.title || post.title,
-    content: req.body.content || post.content,
-    published: req.body.published || post.published,
-  });
-  res.sendStatus(201);
-};
+const updatePost = [
+  validatePost,
+  async (req, res) => {
+    const post = await prisma.getPostById(+req.params.postId);
+    if (!post) return res.sendStatus(404);
+    if (post.userId !== req.user.id) return res.sendStatus(403);
+    await prisma.updatePost(+req.params.postId, {
+      title: req.body.title || post.title,
+      content: req.body.content || post.content,
+      published: req.body.published || post.published,
+    });
+    res.sendStatus(201);
+  },
+];
 
 const deletePost = async (req, res) => {
   const post = await prisma.getPostById(+req.params.postId);
