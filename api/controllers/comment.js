@@ -20,6 +20,15 @@ const udpateComment = [
   },
 ];
 
-const deleteComment = (req, res) => {};
+const deleteComment = async (req, res) => {
+  const comment = await prisma.getCommentById(+req.params.commentId);
+  if (!comment) return res.sendStatus(404);
+  const post = await prisma.getPostById(comment.postId);
+  if (!post) return res.sendStatus(404);
+  const allowed = [comment.userId, post.userId];
+  if (!allowed.includes(req.user.id)) return res.sendStatus(403);
+  await prisma.deleteComment(+req.params.commentId);
+  res.sendStatus(200);
+};
 
 module.exports = { getComment, udpateComment, deleteComment };
