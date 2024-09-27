@@ -14,7 +14,6 @@ const updateUser = [
   validateUser,
   async (req, res) => {
     const user = await prisma.getUserById(+req.params.userId);
-    console.log(req.user);
     if (!user || req.user.id !== +req.params.userId) return res.sendStatus(400);
     let role;
     if (user.role === 'AUTHOR') {
