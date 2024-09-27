@@ -1,21 +1,5 @@
-import { useState } from 'react';
+import { useInput } from '../../hooks/useInput';
 import Input from '../input/Input';
-
-const useInput = (verification) => {
-  const [value, setValue] = useState('');
-  const [validation, setValidation] = useState({ isValid: true });
-
-  const updateValue = (e) => {
-    setValue(e.target.value);
-    checkValue(e.target.value);
-  };
-  const checkValue = (v) => {
-    const message = verification(v);
-    setValidation(message ? { isValid: false, message } : { isValid: true });
-  };
-
-  return { value, updateValue, validation };
-};
 
 const verifyUsername = (username) => {
   let message = '';
@@ -69,7 +53,7 @@ function LoginForm() {
         validation={passwordValidation}
         type="password"
       />
-      <button>Log In</button>
+      <button type="button">Log In</button>
     </form>
   );
 }
