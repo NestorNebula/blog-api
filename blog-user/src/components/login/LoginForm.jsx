@@ -22,7 +22,7 @@ const verifyUsername = (username) => {
   if (username.length === 0) return message;
   if (username.length < 3)
     message += 'Username/Email must be at least 3 characters long. ';
-  const regex = new RegExp('^[A-Z][A-Z0-9-_.]*[A-Z]$', 'i');
+  const regex = new RegExp('^[A-Z][A-Z0-9-_.@]*[A-Z]$', 'i');
   const match = regex.test(username);
   if (!match)
     message +=
