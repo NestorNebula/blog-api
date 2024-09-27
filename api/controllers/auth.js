@@ -48,7 +48,7 @@ const logIn = async (req, res) => {
     sameSite: true,
     path: '/auth',
   });
-  res.sendStatus(200);
+  res.json({ id: user.id });
 };
 
 const refreshAccessToken = (req, res) => {
@@ -61,7 +61,7 @@ const refreshAccessToken = (req, res) => {
         maxAge: 900000,
         sameSite: true,
       });
-      return res.sendStatus(200);
+      return res.json({ id: result });
     }
   }
   res.sendStatus(401);
