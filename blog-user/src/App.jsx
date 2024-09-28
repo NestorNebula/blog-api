@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/navbar/Navbar';
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import getFetchOptions from './helpers/fetchOptions';
 
 const useUser = (userId) => {
   const [data, setData] = useState(null);
@@ -10,7 +11,11 @@ const useUser = (userId) => {
 
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:3000/users/${userId}`, { mode: 'cors' })
+      setLoading(true);
+      fetch(
+        `http://localhost:3000/users/${userId}`,
+        getFetchOptions('get', null)
+      )
         .then((response) => {
           if (response.status >= 400) {
             throw new Error('Error when fetching data.');
@@ -20,6 +25,8 @@ const useUser = (userId) => {
         .then((response) => setData(response))
         .catch((error) => setError(error))
         .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
     }
   }, [userId]);
 
@@ -28,11 +35,23 @@ const useUser = (userId) => {
 
 function App() {
   const [id, setId] = useState(null);
+  if (id) {
+    if (!localStorage.getItem('id')) {
+      localStorage.setItem('id', id);
+    }
+  } else {
+    const localId = localStorage.getItem('id');
+    if (localId) setId(localId);
+  }
   const { data: user, error, loading } = useUser(id);
+
   return (
     <>
       <Navbar />
-      <Outlet context={{ id, setId }} />
+      {(loading && <div>Loading data...</div>) ||
+        (error && <div>Error when fetching data.</div>) || (
+          <Outlet context={{ setId, user }} />
+        )}
     </>
   );
 }
