@@ -1,8 +1,9 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 
 function App() {
+  const { user } = useLoaderData();
   return (
     <>
       <Navbar />
