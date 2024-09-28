@@ -28,7 +28,7 @@ const useUser = (userId) => {
 
 function App() {
   const [id, setId] = useState(null);
-  const { data: user, error, loading } = useUser();
+  const { data: user, error, loading } = useUser(id);
   return (
     <>
       <Navbar />
