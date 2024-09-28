@@ -27,6 +27,12 @@ const getUserByUsermail = async (username) => {
 const getUserById = async (id) => {
   const user = await prisma.user.findUnique({
     where: { id },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      role: true,
+    },
   });
   return user;
 };
