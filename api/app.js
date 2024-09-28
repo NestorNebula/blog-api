@@ -4,8 +4,23 @@ require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/routes');
 const passport = require('passport');
+const cors = require('cors');
 require('./utils/passport');
 
+const origins = ['http://localhost:5173'];
+app.use(
+  cors({
+    origin: function (origin, cb) {
+      if (origins.indexOf(origin) === -1) {
+        return cb(
+          new Error("The origin doesn't have access rights to this API.")
+        );
+      }
+      return cb(null, true);
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
