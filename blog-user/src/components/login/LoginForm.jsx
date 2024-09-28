@@ -1,12 +1,10 @@
 import { useInput } from '../../hooks/useInput';
 import { verifyUsername, verifyPassword } from '../../helpers/inputValidation';
-import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Input from '../input/Input';
 
 function LoginForm() {
-  const { setId } = useOutletContext();
   const [error, setError] = useState(null);
   const {
     value: username,
@@ -37,7 +35,7 @@ function LoginForm() {
     if (response.status >= 400) {
       setError(result);
     } else {
-      setId(result.id);
+      localStorage.setItem('id', result.id);
     }
   };
 
