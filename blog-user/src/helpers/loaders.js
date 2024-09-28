@@ -1,12 +1,21 @@
 import { redirect } from 'react-router-dom';
-import { useUser } from '../hooks/useUser';
 import getFetchOptions from './fetchOptions';
 
-const rootLoader = () => {
+const rootLoader = async () => {
   const userId = localStorage.getItem('id');
   if (!userId) return redirect('/auth/login');
-  const { data: user, error } = useUser(userId);
-  if (error) {
+  let user = null;
+  try {
+    const response = await fetch(
+      `http://localhost:3000/users/${userId}`,
+      getFetchOptions('get', null)
+    );
+    if (response.status >= 400) {
+      throw new Error('Error when fetching data.');
+    }
+    const result = await response.json();
+    user = result;
+  } catch (error) {
     fetch('http://localhost:3000/auth/refresh', getFetchOptions('get', null))
       .then((response) => {
         if (response >= 400) {
@@ -19,7 +28,7 @@ const rootLoader = () => {
         localStorage.setItem('id', response.id);
       });
   }
-  return user;
+  return { user };
 };
 
 const authLoader = () => {

@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     element: <App />,
-    loader: () => rootLoader(),
+    loader: async () => await rootLoader(),
   },
   {
     path: 'auth',
