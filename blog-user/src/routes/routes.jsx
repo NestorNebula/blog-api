@@ -19,16 +19,13 @@ const routes = [
         )
           .then((response) => {
             if (response >= 400) {
+              localStorage.removeItem('id');
               return redirect('/auth/login');
             }
             return response.json();
           })
           .then((response) => {
-            if (userId === response.id) {
-              setUpdate(!update);
-            } else {
-              return redirect('/auth/login');
-            }
+            localStorage.setItem('id', response.id);
           });
       }
       return user;
