@@ -34,6 +34,11 @@ const routes = [
   {
     path: 'auth',
     element: <Auth />,
+    loader: () => {
+      const userId = localStorage.getItem('id');
+      if (userId) return redirect('/');
+      return null;
+    },
     children: [
       {
         path: 'login',
