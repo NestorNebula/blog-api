@@ -5,7 +5,7 @@ import {
   verifyEmail,
   verifyPassword,
 } from '../../../helpers/inputValidation';
-import { Navigate, useOutletContext } from 'react-router-dom';
+import { Navigate, useOutletContext, Link } from 'react-router-dom';
 import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
 
@@ -102,6 +102,12 @@ function SignupForm() {
           Sign Up
         </button>
       </form>
+      <div>
+        <div>Already have an account ?</div>
+        <Link to="/auth/login">
+          <div>Log In</div>
+        </Link>
+      </div>
     </>
   );
 }
