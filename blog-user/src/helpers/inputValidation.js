@@ -11,6 +11,14 @@ const verifyUsername = (username) => {
   return message;
 };
 
+const verifyEmail = (email) => {
+  let message = '';
+  const regex = new RegExp('^[w-.]+@[w]+.[w]{2,4}$');
+  const match = regex.test(email);
+  if (!match) message += 'Email must be in an email format. (example@mail.com)';
+  return message;
+};
+
 const verifyPassword = (password) => {
   let message = '';
   if (password.length === 0) return message;
@@ -20,4 +28,4 @@ const verifyPassword = (password) => {
   return message;
 };
 
-export { verifyUsername, verifyPassword };
+export { verifyUsername, verifyEmail, verifyPassword };
