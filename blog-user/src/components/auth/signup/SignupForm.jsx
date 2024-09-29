@@ -32,15 +32,20 @@ function SignupForm() {
   } = useInput(verifyPassword);
 
   const submitSignup = async () => {
+    if (password !== confirmPwd) {
+      setError("Passwords don't match.");
+      return;
+    }
+    const values = [username, email, password];
     const validations = [
       usernameValidation,
       emailValidation,
-      password,
+      passwordValidation,
       confirmPwdValidation,
     ];
-    const isValid = validations.every(
-      (validation) => validation.isValid === true
-    );
+    const isValid =
+      values.every((value) => value.length !== 0) &&
+      validations.every((validation) => validation.isValid);
     if (!isValid) return;
     const response = await fetch(
       'http://localhost:3000/auth/signup',
