@@ -22,14 +22,12 @@ function LoginForm() {
   } = useInput(verifyPassword);
 
   const submitLogIn = async () => {
-    if (
-      !usernameValidation.isValid ||
-      !passwordValidation.isValid ||
-      username.length === 0 ||
-      password.length === 0
-    ) {
-      return;
-    }
+    const values = [username, password];
+    const validations = [usernameValidation, passwordValidation];
+    const isValid =
+      values.every((value) => value.length !== 0) &&
+      validations.every((validation) => validation.isValid);
+    if (!isValid) return;
     const response = await fetch(
       'http://localhost:3000/auth/login',
       getFetchOptions('post', JSON.stringify({ username, password }))
