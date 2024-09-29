@@ -46,7 +46,7 @@ function LoginForm() {
   return (
     <>
       {error && <div>{error}</div>}
-      <form action="http://localhost:3000/auth/login" method="POST">
+      <form action="" method="POST">
         <Input
           name="username"
           value={username}
