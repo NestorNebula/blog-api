@@ -5,6 +5,7 @@ import {
   verifyEmail,
   verifyPassword,
 } from '../../../helpers/inputValidation';
+import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
 
 function SignupForm() {
@@ -29,6 +30,31 @@ function SignupForm() {
     updateValue: updateConfirmPwd,
     validation: confirmPwdValidation,
   } = useInput(verifyPassword);
+
+  const submitSignup = async () => {
+    const validations = [
+      usernameValidation,
+      emailValidation,
+      password,
+      confirmPwdValidation,
+    ];
+    const isValid = validations.every(
+      (validation) => validation.isValid === true
+    );
+    if (!isValid) return;
+    const response = await fetch(
+      'http://localhost:3000/auth/signup',
+      getFetchOptions(
+        'post',
+        JSON.stringify({ username, email, password, role: null })
+      )
+    );
+    if (response.status >= 400) {
+      setError('Error when creating account.');
+    } else {
+      setError(null);
+    }
+  };
 
   return (
     <>
@@ -62,7 +88,9 @@ function SignupForm() {
           type="password"
           label="Confirm Password"
         />
-        <button type="button">Sign Up</button>
+        <button type="button" onClick={submitSignup}>
+          Sign Up
+        </button>
       </form>
     </>
   );
