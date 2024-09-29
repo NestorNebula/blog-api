@@ -38,6 +38,7 @@ function LoginForm() {
     if (response.status >= 400) {
       setError(result);
     } else {
+      setError(null);
       localStorage.setItem('id', result.id);
     }
   };
