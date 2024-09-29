@@ -52,4 +52,18 @@ describe('LoginForm', () => {
       screen.queryByText('Password must be at least 8 characters long.')
     ).not.toBeNull();
   });
+
+  it('handles submit data', async () => {
+    render(
+      <MemoryRouter>
+        <LoginForm />
+      </MemoryRouter>
+    );
+    const user = userEvent.setup();
+    const btn = screen.getByRole('button');
+    const mockSubmit = vi.fn(() => true);
+    btn.onclick = mockSubmit;
+    await user.click(btn);
+    expect(mockSubmit).toHaveBeenCalled;
+  });
 });
