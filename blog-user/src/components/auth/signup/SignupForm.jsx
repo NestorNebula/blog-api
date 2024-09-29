@@ -5,10 +5,12 @@ import {
   verifyEmail,
   verifyPassword,
 } from '../../../helpers/inputValidation';
+import { Navigate } from 'react-router-dom';
 import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
 
 function SignupForm() {
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const {
     value: username,
@@ -58,11 +60,13 @@ function SignupForm() {
       setError('Error when creating account.');
     } else {
       setError(null);
+      setSuccess(true);
     }
   };
 
   return (
     <>
+      {success && <Navigate to="/auth/login" />}
       {error && <div>{error}</div>}
       <form action="" method="POST">
         <Input

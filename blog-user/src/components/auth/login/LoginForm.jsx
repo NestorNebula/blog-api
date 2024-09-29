@@ -4,10 +4,12 @@ import {
   verifyPassword,
 } from '../../../helpers/inputValidation';
 import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
 
 function LoginForm() {
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const {
     value: username,
@@ -37,12 +39,14 @@ function LoginForm() {
       setError(result);
     } else {
       setError(null);
+      setSuccess(true);
       localStorage.setItem('id', result.id);
     }
   };
 
   return (
     <>
+      {success && <Navigate to="/" />}
       {error && <div>{error}</div>}
       <form action="" method="POST">
         <Input
