@@ -1,5 +1,6 @@
 import { redirect } from 'react-router-dom';
 import getFetchOptions from './fetchOptions';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const rootLoader = async () => {
   const userId = localStorage.getItem('id');
@@ -9,7 +10,7 @@ const rootLoader = async () => {
   while (count < 2) {
     try {
       const response = await fetch(
-        `http://localhost:3000/users/${userId}`,
+        `${API_URL}/users/${userId}`,
         getFetchOptions('get', null)
       );
       if (response.status >= 400) {
@@ -18,7 +19,7 @@ const rootLoader = async () => {
       const result = await response.json();
       user = result;
     } catch (error) {
-      fetch('http://localhost:3000/auth/refresh', getFetchOptions('get', null))
+      fetch(`${API_URL}/auth/refresh`, getFetchOptions('get', null))
         .then((response) => {
           if (response.status >= 400) {
             throw new Error('Error when refreshing access.');

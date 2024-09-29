@@ -4,11 +4,12 @@ import {
   verifyPassword,
 } from '../../../helpers/inputValidation';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useOutletContext } from 'react-router-dom';
 import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
 
 function LoginForm() {
+  const { API_URL } = useOutletContext();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const {
@@ -31,7 +32,7 @@ function LoginForm() {
       validations.every((validation) => validation.isValid);
     if (!isValid) return;
     const response = await fetch(
-      'http://localhost:3000/auth/login',
+      `${API_URL}/auth/login`,
       getFetchOptions('post', JSON.stringify({ username, password }))
     );
     const result = await response.json();

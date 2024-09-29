@@ -5,11 +5,12 @@ import {
   verifyEmail,
   verifyPassword,
 } from '../../../helpers/inputValidation';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useOutletContext } from 'react-router-dom';
 import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
 
 function SignupForm() {
+  const API_URL = useOutletContext();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const {
@@ -50,7 +51,7 @@ function SignupForm() {
       validations.every((validation) => validation.isValid);
     if (!isValid) return;
     const response = await fetch(
-      'http://localhost:3000/auth/signup',
+      `${API_URL}/auth/signup`,
       getFetchOptions(
         'post',
         JSON.stringify({ username, email, password, role: null })
