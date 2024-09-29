@@ -58,7 +58,8 @@ function SignupForm() {
       )
     );
     if (response.status >= 400) {
-      setError('Error when creating account.');
+      const result = await response.json();
+      setError(result.error || 'Error when creating account.');
     } else {
       setError(null);
       setSuccess(true);
