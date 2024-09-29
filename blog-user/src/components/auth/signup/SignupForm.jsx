@@ -10,7 +10,7 @@ import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
 
 function SignupForm() {
-  const API_URL = useOutletContext();
+  const { API_URL } = useOutletContext();
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const {
