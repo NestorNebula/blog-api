@@ -1,8 +1,11 @@
-import { useInput } from '../../hooks/useInput';
-import { verifyUsername, verifyPassword } from '../../helpers/inputValidation';
+import { useInput } from '../../../hooks/useInput';
+import {
+  verifyUsername,
+  verifyPassword,
+} from '../../../helpers/inputValidation';
 import { useState } from 'react';
-import getFetchOptions from '../../helpers/fetchOptions';
-import Input from '../input/Input';
+import getFetchOptions from '../../../helpers/fetchOptions';
+import Input from '../../input/Input';
 
 function LoginForm() {
   const [error, setError] = useState(null);

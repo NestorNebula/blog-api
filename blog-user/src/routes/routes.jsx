@@ -1,6 +1,6 @@
 import App from '../App';
 import Auth from '../components/auth/Auth';
-import LoginForm from '../components/login/LoginForm';
+import LoginForm from '../components/auth/login/LoginForm';
 import { rootLoader, authLoader } from '../helpers/loaders';
 
 const routes = [
