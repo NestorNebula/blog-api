@@ -13,7 +13,7 @@ const verifyUsername = (username) => {
 
 const verifyEmail = (email) => {
   let message = '';
-  const regex = new RegExp('^[w-.]+@[w]+.[w]{2,4}$');
+  const regex = new RegExp('^[\\w-\\.]+@[\\w]+\\.[\\w]{2,4}$');
   const match = regex.test(email);
   if (!match) message += 'Email must be in an email format. (example@mail.com)';
   return message;
