@@ -13,12 +13,18 @@ const signUp = [
         console.log(err);
         return res.sendStatus(503);
       }
-      await prisma.createUser({
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword,
-        role,
-      });
+      try {
+        await prisma.createUser({
+          username: req.body.username,
+          email: req.body.email,
+          password: hashedPassword,
+          role,
+        });
+      } catch (error) {
+        return res
+          .status(400)
+          .json({ error: `${error.meta.target[0]} already taken.` });
+      }
       res.sendStatus(201);
     });
   },
