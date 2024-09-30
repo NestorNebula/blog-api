@@ -61,9 +61,16 @@ describe('LoginForm', () => {
     );
     const user = userEvent.setup();
     const btn = screen.getByRole('button');
-    const mockSubmit = vi.fn(() => true);
-    btn.onclick = mockSubmit;
+    const username = screen.queryByLabelText(/username/i);
+    const password = screen.queryByLabelText(/password/i);
+    const mockSubmit = vi.fn((username, password) => {
+      if (username.value && password.value) {
+        return true;
+      }
+      return false;
+    });
+    btn.onclick = () => mockSubmit(username, password);
     await user.click(btn);
-    expect(mockSubmit).toHaveBeenCalled;
+    expect(mockSubmit).toHaveReturnedWith(false);
   });
 });
