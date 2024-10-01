@@ -1,6 +1,7 @@
 import { useOutletContext, Link } from 'react-router-dom';
 import { useData } from '../../hooks/useData';
 import getFetchOptions from '../../helpers/fetchOptions';
+import Post from '../post/Post';
 
 function Homepage() {
   const { user, API_URL } = useOutletContext();
@@ -24,15 +25,14 @@ function Homepage() {
         <section>
           {posts.map((post) => {
             return (
-              <div key={post.id}>
-                <div>{post.user.username}</div>
-                <div>{post.title}</div>
-                <div>{new Date(post.creationDate).toLocaleDateString()}</div>
-                <div>{post.content}</div>
-                <Link
-                  to={`/posts/${post.id}`}
-                >{`${post.Comments.length} comments`}</Link>
-              </div>
+              <>
+                <Post key={post.id} post={post} details={false} />
+                <Link to={`/posts/${post.id}`}>
+                  {post.Comments.length > 1
+                    ? `${post.Comments.length} comments`
+                    : `${post.Comments.length} comment`}
+                </Link>
+              </>
             );
           })}
         </section>
