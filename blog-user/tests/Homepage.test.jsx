@@ -20,7 +20,7 @@ const getFakePost = () => {
     user: {
       username: faker.person.firstName(),
     },
-    Comments: [getFakeComment(), getFakeComment()],
+    Comments: [getFakeComment(postId, userId), getFakeComment(postId, userId)],
   };
 };
 
@@ -80,6 +80,6 @@ describe('Homepage', () => {
         <Homepage />
       </MemoryRouter>
     );
-    expect(screen.queryAllByRole('link', { name: /commment/i }).length).toBe(2);
+    expect(screen.queryAllByRole('link', { name: /comment/i }).length).toBe(2);
   });
 });
