@@ -6,7 +6,17 @@ function Post({ post, details }) {
       <div>{new Date(post.creationDate).toLocaleDateString()}</div>
       <div>{post.content}</div>
       {details ? (
-        <div>Comments</div>
+        <div>
+          {post.Comments.map((comment) => {
+            return (
+              <div key={comment.id}>
+                <div>{comment.user.username}</div>
+                <div>{comment.content}</div>
+                <div>{new Date(post.creationDate).toLocaleDateString()}</div>
+              </div>
+            );
+          })}
+        </div>
       ) : details !== false ? (
         <div>
           {post.Comments.length > 1
