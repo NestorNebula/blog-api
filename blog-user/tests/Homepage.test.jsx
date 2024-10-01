@@ -73,4 +73,13 @@ describe('Homepage', () => {
     );
     expect(screen.queryByText(/homepage/i)).not.toBeNull();
   });
+
+  it('renders fetched posts', () => {
+    render(
+      <MemoryRouter>
+        <Homepage />
+      </MemoryRouter>
+    );
+    expect(screen.queryAllByRole('link', { name: /commment/i }).length).toBe(2);
+  });
 });
