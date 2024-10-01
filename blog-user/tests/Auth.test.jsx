@@ -15,6 +15,15 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
+globalThis.fetch = vi.fn((url, value) => {
+  return {
+    status: 200,
+    json: async () => {
+      return { id: 1, url: url, value: value };
+    },
+  };
+});
+
 describe('LoginForm', () => {
   it('renders correctly', () => {
     render(
@@ -63,14 +72,6 @@ describe('LoginForm', () => {
     const btn = screen.getByRole('button');
     const username = screen.queryByLabelText(/username/i);
     const password = screen.queryByLabelText(/password/i);
-    globalThis.fetch = vi.fn((url, value) => {
-      return {
-        status: 200,
-        json: async () => {
-          return { id: 1, url: url, value: value };
-        },
-      };
-    });
     expect(globalThis.fetch).not.toHaveBeenCalled();
     await user.type(username, 'username');
     await user.type(password, 'password');
@@ -96,14 +97,6 @@ describe('Signup Form', () => {
         <SignupForm />
       </MemoryRouter>
     );
-    globalThis.fetch = vi.fn((url, value) => {
-      return {
-        status: 200,
-        json: async () => {
-          return { id: 1, url: url, value: value };
-        },
-      };
-    });
     const user = userEvent.setup();
     const btn = screen.queryByText(/sign up/i);
     const username = screen.queryByLabelText(/username/i);
