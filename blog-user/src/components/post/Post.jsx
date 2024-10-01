@@ -1,3 +1,5 @@
+import Comment from '../comment/Comment';
+
 function Post({ post, details }) {
   return (
     <div>
@@ -8,13 +10,7 @@ function Post({ post, details }) {
       {details ? (
         <div>
           {post.Comments.map((comment) => {
-            return (
-              <div key={comment.id}>
-                <div>{comment.user.username}</div>
-                <div>{comment.content}</div>
-                <div>{new Date(post.creationDate).toLocaleDateString()}</div>
-              </div>
-            );
+            return <Comment key={comment.id} />;
           })}
         </div>
       ) : details !== false ? (
