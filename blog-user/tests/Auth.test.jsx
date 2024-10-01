@@ -78,3 +78,54 @@ describe('LoginForm', () => {
     expect(globalThis.fetch).toHaveBeenCalled();
   });
 });
+
+describe('Signup Form', () => {
+  it('renders form', () => {
+    render(
+      <MemoryRouter>
+        <SignupForm />
+      </MemoryRouter>
+    );
+    const button = screen.queryByText(/sign up/i);
+    expect(button).not.toBeNull();
+  });
+
+  it('handles submit data', async () => {
+    render(
+      <MemoryRouter>
+        <SignupForm />
+      </MemoryRouter>
+    );
+    globalThis.fetch = vi.fn((url, value) => {
+      return {
+        status: 200,
+        json: async () => {
+          return { id: 1, url: url, value: value };
+        },
+      };
+    });
+    const user = userEvent.setup();
+    const btn = screen.queryByText(/sign up/i);
+    const username = screen.queryByLabelText(/username/i);
+    const email = screen.queryByLabelText(/email/i);
+    const password = screen.queryByLabelText('password');
+    const confirm = screen.queryByLabelText(/confirm/i);
+    const type = async (u, e, p, c) => {
+      await user.clear(username);
+      await user.clear(email);
+      await user.clear(password);
+      await user.clear(confirm);
+      await user.type(username, u);
+      await user.type(email, e);
+      await user.type(password, p);
+      await user.type(confirm, c);
+      await user.click(btn);
+    };
+    await type('username', 'this@email.com', 'password', 'pasword');
+    await type('us', 'this@email.com', 'password', 'password');
+    await type('_username_', 'this@email.com', 'password', 'pasword');
+    expect(globalThis.fetch).not.toHaveBeenCalled();
+    await type('username', 'this@email.com', 'password', 'password');
+    expect(globalThis.fetch).toHaveBeenCalled();
+  });
+});
