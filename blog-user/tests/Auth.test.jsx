@@ -63,14 +63,18 @@ describe('LoginForm', () => {
     const btn = screen.getByRole('button');
     const username = screen.queryByLabelText(/username/i);
     const password = screen.queryByLabelText(/password/i);
-    const mockSubmit = vi.fn((username, password) => {
-      if (username.value && password.value) {
-        return true;
-      }
-      return false;
+    globalThis.fetch = vi.fn((url, value) => {
+      return {
+        status: 200,
+        json: async () => {
+          return { id: 1, url: url, value: value };
+        },
+      };
     });
-    btn.onclick = () => mockSubmit(username, password);
+    expect(globalThis.fetch).not.toHaveBeenCalled();
+    await user.type(username, 'username');
+    await user.type(password, 'password');
     await user.click(btn);
-    expect(mockSubmit).toHaveReturnedWith(false);
+    expect(globalThis.fetch).toHaveBeenCalled();
   });
 });
