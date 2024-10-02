@@ -16,6 +16,7 @@ function Account() {
   const updateForm = () => {
     setForm(!form);
   };
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
   const {
@@ -44,13 +45,44 @@ function Account() {
     validation: roleValidation,
   } = useInput(verifyRole);
 
-  const submitUserUpdate = () => {};
+  const submitUserUpdate = async () => {
+    if (password !== confirm) {
+      setError("Passwords don't match.");
+      return;
+    }
+    const values = [username, email, password, confirm];
+    const validations = [
+      usernameValidation,
+      emailValidation,
+      passwordValidation,
+      confirmValidation,
+      roleValidation,
+    ];
+    const isValid =
+      values.every((value) => value.length) &&
+      validations.every((validation) => validation.isValid);
+    if (!isValid) return;
+    const response = await fetch(
+      `${API_URL}/users/${user.id}`,
+      getFetchOptions(
+        'put',
+        JSON.stringify({ username, email, password, role })
+      )
+    );
+    if (response.status >= 400) {
+      setError('Error when updating account.');
+    } else {
+      setError(null);
+      setSuccess(true);
+    }
+  };
 
   return (
     <main>
       <section>
         {form ? (
           <form>
+            {error && <div>{error}</div>}
             <Input
               name="username"
               value={username}
@@ -86,7 +118,9 @@ function Account() {
               validation={roleValidation}
               label="Author secret code (Leave blank if you do not have the code)"
             />
-            <button onSubmit={submitUserUpdate}>Confirm Update</button>
+            <button type="button" onClick={submitUserUpdate}>
+              Confirm Update
+            </button>
           </form>
         ) : (
           <>
