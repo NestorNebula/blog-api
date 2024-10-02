@@ -3,6 +3,7 @@ import Auth from '../components/auth/Auth';
 import LoginForm from '../components/auth/login/LoginForm';
 import SignupForm from '../components/auth/signup/SignupForm';
 import Homepage from '../components/homepage/Homepage';
+import Postpage from '../components/post/Postpage';
 import { rootLoader, authLoader } from '../helpers/loaders';
 
 const routes = [
@@ -13,6 +14,10 @@ const routes = [
       {
         index: true,
         element: <Homepage />,
+      },
+      {
+        path: 'posts/:postId',
+        element: <Postpage />,
       },
     ],
     loader: async () => await rootLoader(),
