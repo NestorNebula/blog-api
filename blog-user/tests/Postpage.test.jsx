@@ -58,4 +58,23 @@ describe('Postpage', () => {
     );
     expect(screen.queryByText(post.title)).not.toBeNull();
   });
+
+  it('add comment', async () => {
+    render(
+      <MemoryRouter>
+        <Postpage />
+      </MemoryRouter>
+    );
+    globalThis.fetch = vi.fn((url, options) => {
+      return {
+        status: 201,
+      };
+    });
+    const user = userEvent.setup();
+    const btn = screen.getByRole('button');
+    const content = screen.getByLabelText(/comment/i);
+    await user.type(content, 'a comment');
+    await user.click(btn);
+    expect(globalThis.fetch).toHaveBeenCalled();
+  });
 });
