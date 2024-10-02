@@ -45,7 +45,7 @@ function Postpage() {
         <div>Loading post...</div>
       ) : (
         <>
-          <Post post={post} details={true} />
+          <Post post={post} details={true} user={user} />
           {postError && <div>{postError}</div>}
           <Input
             name="comment"

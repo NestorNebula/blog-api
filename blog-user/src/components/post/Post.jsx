@@ -1,6 +1,6 @@
 import Comment from '../comment/Comment';
 
-function Post({ post, details }) {
+function Post({ post, details, user }) {
   return (
     <div>
       <div>{post.user.username}</div>
@@ -10,7 +10,7 @@ function Post({ post, details }) {
       {details ? (
         <div>
           {post.Comments.map((comment) => {
-            return <Comment key={comment.id} comment={comment} />;
+            return <Comment key={comment.id} comment={comment} user={user} />;
           })}
         </div>
       ) : details !== false ? (
