@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, Navigate } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import {
   verifyUsername,
@@ -79,6 +79,7 @@ function Account() {
 
   return (
     <main>
+      {success && <Navigate to="/" />}
       <section>
         {form ? (
           <form>
