@@ -111,13 +111,15 @@ function Account() {
               type="password"
               label="Confirm Password"
             />
-            <Input
-              name="role"
-              value={role}
-              update={updateRole}
-              validation={roleValidation}
-              label="Author secret code (Leave blank if you do not have the code)"
-            />
+            {user.role === 'User' && (
+              <Input
+                name="role"
+                value={role}
+                update={updateRole}
+                validation={roleValidation}
+                label="Author secret code (Leave blank if you do not have the code)"
+              />
+            )}
             <button type="button" onClick={submitUserUpdate}>
               Confirm Update
             </button>
