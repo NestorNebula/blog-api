@@ -82,6 +82,8 @@ describe('Postpage', () => {
     const btn = screen.getByRole('button', { name: /delete/i });
     expect(btn).not.toBeNull();
     await user.click(btn);
+    const confirmbtn = screen.getByRole('button', { name: /confirm/i });
+    await user.click(confirmbtn);
     const url = globalThis.fetch.mock.results[0].url;
     expect(url).toMatch(post.Comments[0].id);
   });
