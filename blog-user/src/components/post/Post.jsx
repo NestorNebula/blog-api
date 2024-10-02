@@ -1,6 +1,6 @@
 import Comment from '../comment/Comment';
 
-function Post({ post, details, user }) {
+function Post({ post, details, user, update, setUpdate, API_URL }) {
   return (
     <div>
       <div>{post.user.username}</div>
@@ -10,7 +10,16 @@ function Post({ post, details, user }) {
       {details ? (
         <div>
           {post.Comments.map((comment) => {
-            return <Comment key={comment.id} comment={comment} user={user} />;
+            return (
+              <Comment
+                key={comment.id}
+                comment={comment}
+                user={user}
+                update={update}
+                setUpdate={setUpdate}
+                API_URL={API_URL}
+              />
+            );
           })}
         </div>
       ) : details !== false ? (

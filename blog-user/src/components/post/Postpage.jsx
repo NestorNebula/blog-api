@@ -45,7 +45,14 @@ function Postpage() {
         <div>Loading post...</div>
       ) : (
         <>
-          <Post post={post} details={true} user={user} />
+          <Post
+            post={post}
+            details={true}
+            user={user}
+            update={update}
+            setUpdate={setUpdate}
+            API_URL={API_URL}
+          />
           {postError && <div>{postError}</div>}
           <Input
             name="comment"
