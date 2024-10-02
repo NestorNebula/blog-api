@@ -22,12 +22,12 @@ function Account() {
     value: username,
     updateValue: updateUsername,
     validation: usernameValidation,
-  } = useInput(verifyUsername);
+  } = useInput(verifyUsername, user.username);
   const {
     value: email,
     updateValue: updateEmail,
     validation: emailValidation,
-  } = useInput(verifyEmail);
+  } = useInput(verifyEmail, user.email);
   const {
     value: password,
     updateValue: updatePassword,
