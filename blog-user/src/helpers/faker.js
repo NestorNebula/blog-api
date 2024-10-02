@@ -1,5 +1,15 @@
 import { faker } from '@faker-js/faker';
 
+const getFakeUser = () => {
+  const username = faker.person.firstName();
+  return {
+    id: faker.number.int({ max: 100 }),
+    username,
+    email: faker.internet.email({ firstName: username }),
+    role: 'USER',
+  };
+};
+
 const getFakePost = () => {
   const postId = faker.number.int({ max: 1000 });
   const userId = faker.number.int({ max: 100 });
@@ -35,4 +45,4 @@ const getFakeComment = (postId, userId) => {
   };
 };
 
-export { getFakePost, getFakeComment };
+export { getFakeUser, getFakePost, getFakeComment };
