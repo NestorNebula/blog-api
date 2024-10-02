@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { getFakeUser } from '../src/helpers/faker';
 import Account from '../src/components/account/Account';
 
-const user = getFakeUser();
+const fakeUser = getFakeUser();
 
 beforeEach(() => {
   render(
@@ -21,7 +21,7 @@ vi.mock('react-router-dom', async () => {
     ...actual,
     useOutletContext: () => {
       return {
-        user,
+        user: fakeUser,
         API_URL: null,
       };
     },
@@ -30,6 +30,16 @@ vi.mock('react-router-dom', async () => {
 
 describe('Account', () => {
   it('renders account', () => {
-    expect(screen.queryByText(user.username)).not.toBeNull();
+    expect(screen.queryByText(fakeUser.username)).not.toBeNull();
+  });
+
+  it('display update form', async () => {
+    const user = userEvent.setup();
+    const displayFormBtn = screen.getByRole('button', {
+      name: /update account/i,
+    });
+    expect(screen.queryByLabelText(/username/i)).toBeNull();
+    await user.click(displayFormBtn);
+    expect(screen.queryByLabelText(/username/i)).not.toBeNull();
   });
 });
