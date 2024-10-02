@@ -37,6 +37,13 @@ const getUserById = async (id) => {
   return user;
 };
 
+const getFullUserById = async (id) => {
+  const user = await prisma.user.findUnique({
+    where: { id },
+  });
+  return user;
+};
+
 const updateUser = async (id, user) => {
   await prisma.user.update({
     where: { id },
@@ -174,6 +181,7 @@ module.exports = {
   createUser,
   getUserByUsermail,
   getUserById,
+  getFullUserById,
   updateUser,
   getUserPosts,
   getAllPosts,

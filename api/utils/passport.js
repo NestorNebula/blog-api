@@ -16,7 +16,7 @@ const opts = {
 };
 passport.use(
   new JwtStrategy(opts, async (jwt_payload, done) => {
-    const user = await prisma.getUserById(jwt_payload.id);
+    const user = await prisma.getFullUserById(jwt_payload.id);
     if (!user) {
       return done(null, false);
     }
