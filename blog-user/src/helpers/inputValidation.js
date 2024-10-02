@@ -20,10 +20,18 @@ const verifyEmail = (email) => {
 
 const verifyPassword = (password) => {
   let message = '';
-  const regex = new RegExp('[\\S]{8,}');
+  const regex = new RegExp('^[\\S]{8,}$');
   const match = regex.test(password);
   if (!match) message += 'Password must be at least 8 characters long.';
   return message;
 };
 
-export { verifyUsername, verifyEmail, verifyPassword };
+const verifyRole = (role) => {
+  let message = '';
+  const regex = new RegExp('^[\\w]*$');
+  const match = regex.test(role);
+  if (!match) message += "Role isn't in the great format.";
+  return message;
+};
+
+export { verifyUsername, verifyEmail, verifyPassword, verifyRole };
