@@ -15,7 +15,10 @@ const getFakePost = () => {
     user: {
       username: faker.person.firstName(),
     },
-    Comments: [getFakeComment(postId, userId), getFakeComment(postId, userId)],
+    Comments: [
+      getFakeComment(postId, userId),
+      getFakeComment(postId, userId + 1),
+    ],
   };
 };
 
