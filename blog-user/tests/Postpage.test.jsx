@@ -84,7 +84,7 @@ describe('Postpage', () => {
     await user.click(btn);
     const confirmbtn = screen.getByRole('button', { name: /confirm/i });
     await user.click(confirmbtn);
-    const url = globalThis.fetch.mock.results[0].url;
+    const url = globalThis.fetch.mock.results[0].value.url;
     expect(url).toMatch(post.Comments[0].id);
   });
 });
