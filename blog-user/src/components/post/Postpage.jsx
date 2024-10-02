@@ -23,7 +23,10 @@ function Postpage() {
       ) : loading ? (
         <div>Loading post...</div>
       ) : (
-        <Post post={post} details={true} />
+        <>
+          <Post post={post} details={true} />
+          <button>Add Comment</button>
+        </>
       )}
     </>
   );
