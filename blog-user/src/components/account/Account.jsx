@@ -5,6 +5,7 @@ import {
   verifyUsername,
   verifyEmail,
   verifyPassword,
+  verifyRole,
 } from '../../helpers/inputValidation';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Input from '../input/Input';
@@ -37,6 +38,11 @@ function Account() {
     updateValue: updateConfirm,
     validation: confirmValidation,
   } = useInput(verifyPassword);
+  const {
+    value: role,
+    updateValue: updateRole,
+    validation: roleValidation,
+  } = useInput(verifyRole);
 
   const submitUserUpdate = () => {};
 
@@ -72,6 +78,13 @@ function Account() {
               validation={confirmValidation}
               type="password"
               label="Confirm Password"
+            />
+            <Input
+              name="role"
+              value={role}
+              update={updateRole}
+              validation={roleValidation}
+              label="Author secret code (Leave blank if you do not have the code)"
             />
             <button onSubmit={submitUserUpdate}>Confirm Update</button>
           </form>
