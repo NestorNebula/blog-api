@@ -10,7 +10,7 @@ function Post({ post, details }) {
       {details ? (
         <div>
           {post.Comments.map((comment) => {
-            return <Comment key={comment.id} />;
+            return <Comment key={comment.id} comment={comment} />;
           })}
         </div>
       ) : details !== false ? (

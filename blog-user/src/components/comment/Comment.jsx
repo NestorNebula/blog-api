@@ -3,7 +3,7 @@ function Comment({ comment }) {
     <div>
       <div>{comment.user.username}</div>
       <div>{comment.content}</div>
-      <div>{new Date(post.creationDate).toLocaleDateString()}</div>
+      <div>{new Date(comment.creationDate).toLocaleDateString()}</div>
     </div>
   );
 }
