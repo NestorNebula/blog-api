@@ -42,4 +42,26 @@ describe('Account', () => {
     await user.click(displayFormBtn);
     expect(screen.queryByLabelText(/username/i)).not.toBeNull();
   });
+
+  it('submit updated data', async () => {
+    globalThis.fetch = vi.fn((url, options) => {
+      return {
+        status: 201,
+        url,
+        options,
+      };
+    });
+    const user = userEvent.setup();
+    const displayFormBtn = screen.getByRole('button', {
+      name: /update account/i,
+    });
+    await user.click(displayFormBtn);
+    const password = screen.getByLabelText('password');
+    const confirm = screen.getByLabelText(/confirm/i);
+    await user.type(password, 'password');
+    await user.type(confirm, 'password');
+    const submitBtn = screen.getByRole('button', { name: /confirm update/i });
+    await user.click(submitBtn);
+    expect(globalThis.fetch).toHaveBeenCalled();
+  });
 });
