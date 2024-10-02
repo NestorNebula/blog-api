@@ -56,6 +56,6 @@ describe('Postpage', () => {
         <Postpage />
       </MemoryRouter>
     );
-    expect(screen.queryByText(post.content)).not.toBeNull();
+    expect(screen.queryByText(post.title)).not.toBeNull();
   });
 });
