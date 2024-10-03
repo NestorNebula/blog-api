@@ -7,7 +7,7 @@ const passport = require('passport');
 const cors = require('cors');
 require('./utils/passport');
 
-const origins = ['http://localhost:5173'];
+const origins = [process.env.ORIGIN1, process.env.ORIGIN2];
 app.use(
   cors({
     origin: function (origin, cb) {
