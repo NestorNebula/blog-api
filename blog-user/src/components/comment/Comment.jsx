@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import getFetchOptions from '../../helpers/fetchOptions';
+import { formatDistanceToNow } from 'date-fns';
 
 function Comment({ comment, user, update, setUpdate, API_URL }) {
   const [deleteChoice, setDeleteChoice] = useState(false);
@@ -20,7 +21,7 @@ function Comment({ comment, user, update, setUpdate, API_URL }) {
     <div>
       <div>{comment.user.username}</div>
       <div>{comment.content}</div>
-      <div>{new Date(comment.creationDate).toLocaleDateString()}</div>
+      <div>{formatDistanceToNow(comment.creationDate) + ' ago'}</div>
       {user && user.id === comment.userId && (
         <button onClick={updateDeleteChoice}>Delete</button>
       )}

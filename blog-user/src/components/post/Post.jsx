@@ -1,11 +1,12 @@
 import Comment from '../comment/Comment';
+import { formatDistanceToNow } from 'date-fns';
 
 function Post({ post, details, user, update, setUpdate, API_URL }) {
   return (
     <div>
       <div>{post.user.username}</div>
       <div>{post.title}</div>
-      <div>{new Date(post.creationDate).toLocaleDateString()}</div>
+      <div>{formatDistanceToNow(post.creationDate) + ' ago'}</div>
       <div>{post.content}</div>
       {details ? (
         <div>
