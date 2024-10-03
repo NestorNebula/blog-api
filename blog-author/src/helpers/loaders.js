@@ -4,7 +4,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const rootLoader = async () => {
   const userId = localStorage.getItem('id');
-  if (!userId) return redirect('/auth/login');
+  if (!userId) return redirect('/login');
   let user = null;
   let count = 0;
   while (count < 2) {
@@ -31,13 +31,13 @@ const rootLoader = async () => {
         })
         .catch(() => {
           localStorage.removeItem('id');
-          return redirect('/auth/login');
+          return redirect('/login');
         });
     }
     if (user) break;
     count++;
   }
-  if (!user) return redirect('/auth/login');
+  if (!user) return redirect('/login');
   return { user };
 };
 
