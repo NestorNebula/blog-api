@@ -5,10 +5,10 @@ function Navbar() {
     <nav>
       <ul>
         <li>
-          <div>Homepage</div>
+          <Link to="/">Homepage</Link>
         </li>
         <li>
-          <div>Account</div>
+          <Link to="account">Account</Link>
         </li>
       </ul>
     </nav>
