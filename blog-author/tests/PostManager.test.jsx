@@ -85,4 +85,31 @@ describe('PostManager', () => {
       published: !post.published,
     });
   });
+
+  it('submit data when updating post', async () => {
+    globalThis.fetch = vi.fn((url, options) => {
+      return {
+        status: 201,
+        url,
+        options,
+      };
+    });
+
+    const updatedPost = getFakePost();
+    const user = userEvent.setup();
+    const editBtn = screen.getByRole('button', { name: /edit/i });
+    await user.click(editBtn);
+    const title = screen.getByLabelText(/title/i);
+    const content = screen.getByLabelText(/content/i);
+    await user.clear(title);
+    await user.clear(content);
+    await user.type(title, updatedPost.title);
+    await user.type(content, updatedPost.content);
+    const submitBtn = screen.getByRole('button', { name: /update/i });
+    await user.click(submitBtn);
+    expect(JSON.parse(globalThis.fetch.mock.calls[0][1].body)).toEqual({
+      title: updatedPost.title,
+      content: updatedPost.content,
+    });
+  });
 });
