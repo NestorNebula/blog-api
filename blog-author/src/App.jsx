@@ -4,12 +4,12 @@ import { Link, useLoaderData, Outlet } from 'react-router-dom';
 const BLOG_URL = import.meta.env.VITE_BLOG_URL;
 
 function App() {
-  const { user } = useLoaderData();
+  const { user: author } = useLoaderData();
   return (
     <>
       <Navbar></Navbar>
-      {user.role === 'AUTHOR' ? (
-        <Outlet />
+      {author.role === 'AUTHOR' ? (
+        <Outlet author={author} />
       ) : (
         <section>
           <div>This page is for the blog authors.</div>
