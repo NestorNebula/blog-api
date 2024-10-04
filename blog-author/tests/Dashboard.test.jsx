@@ -54,7 +54,7 @@ describe('Dashboard', () => {
 
   it("fetches and renders author's posts", () => {
     expect(globalThis.fetch).toHaveBeenCalled();
-    const postBtns = screen.queryAllByRole('button', { name: /details/i });
+    const postBtns = screen.queryAllByRole('link', { name: /details/i });
     expect(postBtns.length).toBe(2);
   });
 });
