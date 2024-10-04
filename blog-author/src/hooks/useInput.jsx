@@ -13,7 +13,7 @@ const useInput = (verification, initial = '') => {
     setValidation(message ? { isValid: false, message } : { isValid: true });
   };
 
-  return { value, updateValue, validation };
+  return { value, setValue, updateValue, validation };
 };
 
 export { useInput };
