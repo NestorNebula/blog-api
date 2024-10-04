@@ -27,4 +27,10 @@ const verifyPassword = (password) => {
   return message;
 };
 
-export { verifyUsername, verifyPassword };
+const verifyTitle = (title) => {
+  let message = '';
+  if (title.length > 50) message += 'Title cannot exceed 50 characters.';
+  return message;
+};
+
+export { verifyUsername, verifyPassword, verifyTitle };
