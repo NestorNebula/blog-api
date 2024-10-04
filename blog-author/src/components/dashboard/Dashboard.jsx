@@ -15,6 +15,15 @@ function Dashboard() {
     getFetchOptions('get', null)
   );
 
+  const sortPosts = (posts) => {
+    posts.sort((a, b) => {
+      const aDate = new Date(a.creationDate);
+      const bDate = new Date(b.creationDate);
+      return bDate - aDate;
+    });
+    return <></>;
+  };
+
   return (
     <>
       {error ? (
@@ -23,6 +32,7 @@ function Dashboard() {
         <div>Loading posts...</div>
       ) : (
         <main>
+          {sortPosts(posts)}
           <header>
             <div>{`${author.username}'s Dashboard`}</div>
           </header>

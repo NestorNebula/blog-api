@@ -1,6 +1,7 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar';
 import { Link, useLoaderData, Outlet } from 'react-router-dom';
+import sortPosts from './helpers/sortPosts';
 const BLOG_URL = import.meta.env.VITE_BLOG_URL;
 
 function App() {
