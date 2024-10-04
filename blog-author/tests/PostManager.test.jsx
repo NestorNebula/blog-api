@@ -80,7 +80,8 @@ describe('PostManager', () => {
     const user = userEvent.setup();
     const statusBtn = screen.getByRole('button', { name: /publish/i });
     await user.click(statusBtn);
-    expect(globalThis.fetch.mock.calls[0][1].body).toEqual({
+    const body = globalThis.fetch.mock.calls[0][1].body;
+    expect(JSON.parse(body)).toEqual({
       published: !post.published,
     });
   });
