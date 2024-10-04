@@ -19,6 +19,19 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
+vi.mock('../src/hooks/useData', () => {
+  return {
+    useData: (url, options) => {
+      const data = fetch(url, options);
+      return {
+        data: data.posts,
+        error: null,
+        loading: false,
+      };
+    },
+  };
+});
+
 globalThis.fetch = vi.fn((url, options) => {
   return {
     status: 200,
