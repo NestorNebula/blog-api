@@ -13,11 +13,9 @@ function PostManager() {
     data: post,
     error,
     loading,
-  } = useData(
-    `${API_URL}/posts/${postId}`,
-    getFetchOptions('get', null),
-    update
-  );
+  } = useData(`${API_URL}/posts/${postId}`, getFetchOptions('get', null), [
+    update,
+  ]);
   const [fError, setFError] = useState(null);
 
   const updateStatus = async () => {
