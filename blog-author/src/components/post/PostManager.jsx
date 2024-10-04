@@ -6,13 +6,18 @@ import Post from './Post';
 const API_URL = import.meta.env.VITE_API_URL;
 
 function PostManager() {
+  const [update, setUpdate] = useState(false);
   const { author } = useOutletContext();
   const { postId } = useParams();
   const {
     data: post,
     error,
     loading,
-  } = useData(`${API_URL}/posts/:postId`, getFetchOptions('get', null));
+  } = useData(
+    `${API_URL}/posts/${postId}`,
+    getFetchOptions('get', null),
+    update
+  );
 
   return (
     <>
@@ -26,7 +31,12 @@ function PostManager() {
             <div>Post Manager</div>
           </header>
           <section>
-            <Post post={post} details={true} />
+            <Post
+              post={post}
+              details={true}
+              update={update}
+              setUpdate={setUpdate}
+            />
           </section>
         </main>
       )}

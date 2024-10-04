@@ -2,7 +2,7 @@ import { useState } from 'react';
 import getFetchOptions from '../../helpers/fetchOptions';
 const API_URL = import.meta.env.VITE_API_URL;
 
-function Comment({ comment }) {
+function Comment({ comment, update, setUpdate }) {
   const [deleteChoice, setDeleteChoice] = useState(false);
   const updateDeleteChoice = () => {
     setDeleteChoice(!deleteChoice);
