@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useOutletContext, useParams, Navigate } from 'react-router-dom';
 import { useData } from '../../hooks/useData';
+import { useInput } from '../../hooks/useInput';
+import { verifyTitle } from '../../helpers/inputValidation';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Post from './Post';
+import Input from '../input/Input';
 const API_URL = import.meta.env.VITE_API_URL;
 
 function PostManager() {
@@ -17,6 +20,42 @@ function PostManager() {
     update,
   ]);
   const [fError, setFError] = useState(null);
+
+  const [edit, setEdit] = useState(false);
+  const updateEdit = () => {
+    setTitle(post.title);
+    setContent(post.content);
+    setEdit(!edit);
+  };
+
+  const {
+    value: title,
+    setValue: setTitle,
+    updateValue: updateTitle,
+    validation: titleValidation,
+  } = useInput(verifyTitle);
+  const [content, setContent] = useState('');
+  const updateContent = (e) => {
+    setContent(e.target.value);
+  };
+  const updatePost = async () => {
+    const values = [title, content];
+    const isValid =
+      titleValidation.isValid && values.every((value) => value.length);
+    if (!isValid) return;
+    const result = await fetch(
+      `${API_URL}/posts/${postId}`,
+      getFetchOptions('put', JSON.stringify({ title, content }))
+    );
+    if (result.status >= 400) {
+      setFError('Error when updating post.');
+    } else {
+      setFError(null);
+      setEdit(false);
+      setUpdate(!update);
+    }
+  };
+
   const updateStatus = async () => {
     const result = await fetch(
       `${API_URL}/posts/${postId}`,
@@ -44,16 +83,41 @@ function PostManager() {
             <div>Post Manager</div>
           </header>
           <section>
-            <Post
-              post={post}
-              details={true}
-              update={update}
-              setUpdate={setUpdate}
-            />
-            {post.published ? (
-              <button onClick={updateStatus}>Unpublish</button>
+            {edit ? (
+              <form>
+                <Input
+                  name="title"
+                  value={title}
+                  update={updateTitle}
+                  validation={titleValidation}
+                />
+                <label htmlFor="content">Post Content</label>
+                <textarea
+                  name="content"
+                  id="content"
+                  value={content}
+                  onChange={updateContent}
+                  rows={20}
+                ></textarea>
+                <button type="button" onClick={updatePost}>
+                  Update Post
+                </button>
+              </form>
             ) : (
-              <button onClick={updateStatus}>Publish</button>
+              <>
+                <Post
+                  post={post}
+                  details={true}
+                  update={update}
+                  setUpdate={setUpdate}
+                />
+                <button onClick={updateEdit}>Edit post</button>
+                {post.published ? (
+                  <button onClick={updateStatus}>Unpublish</button>
+                ) : (
+                  <button onClick={updateStatus}>Publish</button>
+                )}
+              </>
             )}
           </section>
         </main>
