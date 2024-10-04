@@ -1,6 +1,7 @@
 import App from '../App';
 import LoginForm from '../components/login/LoginForm';
 import Dashboard from '../components/dashboard/Dashboard';
+import PostManager from '../components/post/PostManager';
 import { rootLoader, authLoader } from '../helpers/loaders';
 
 const routes = [
@@ -12,6 +13,10 @@ const routes = [
       {
         index: true,
         element: <Dashboard />,
+      },
+      {
+        path: '/posts/:postId',
+        element: <PostManager />,
       },
     ],
   },
