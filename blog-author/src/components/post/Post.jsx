@@ -5,7 +5,7 @@ function Post({ post, details }) {
     <div>
       <div>{post.user.username}</div>
       <div>{post.title}</div>
-      <div>{new Date(post.creationDate)}</div>
+      <div>{new Date(post.creationDate).toLocaleString()}</div>
       <div>{post.content}</div>
       {details ? (
         <div>

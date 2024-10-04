@@ -21,7 +21,7 @@ function Comment({ comment }) {
     <div>
       <div>{comment.user.username}</div>
       <div>{comment.content}</div>
-      <div>{new Date(comment.creationDate)}</div>
+      <div>{new Date(comment.creationDate).toLocaleString()}</div>
       <button onClick={updateDeleteChoice}>Delete</button>
       {deleteChoice && (
         <div>
