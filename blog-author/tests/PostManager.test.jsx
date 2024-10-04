@@ -67,4 +67,21 @@ describe('PostManager', () => {
       post.Comments[1].id
     );
   });
+
+  it('calls fetch when updating post status', async () => {
+    globalThis.fetch = vi.fn((url, options) => {
+      return {
+        status: 201,
+        url,
+        options,
+      };
+    });
+
+    const user = userEvent.setup();
+    const statusBtn = screen.getByRole('button', { name: /publish/i });
+    await user.click(statusBtn);
+    expect(globalThis.fetch.mock.calls[0][1].body).toEqual({
+      published: !post.published,
+    });
+  });
 });
