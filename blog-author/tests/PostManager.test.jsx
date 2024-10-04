@@ -48,4 +48,23 @@ describe('PostManager', () => {
   it('renders post correctly', () => {
     expect(screen.queryByText(post.title)).not.toBeNull();
   });
+
+  it('let author delete any comment', async () => {
+    globalThis.fetch = vi.fn((url, options) => {
+      return {
+        status: 200,
+        url,
+        options,
+      };
+    });
+
+    const user = userEvent.setup();
+    const deleteBtn = screen.getAllByRole('button', { name: /delete/i });
+    await user.click(deleteBtn[1]);
+    const confirmBtn = screen.getByRole('button', { name: /confirm/i });
+    await user.click(confirmBtn);
+    expect(globalThis.fetch.mock.results[0].value.url).toMatch(
+      post.Comments[1].id
+    );
+  });
 });
