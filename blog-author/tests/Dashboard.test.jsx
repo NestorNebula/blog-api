@@ -49,7 +49,7 @@ beforeEach(() => {
 
 describe('Dashboard', () => {
   it("renders author's dashboard", () => {
-    expect(screen.queryByText(author.username)).not.toBeNull();
+    expect(screen.queryByText(author.username + "'s Dashboard")).not.toBeNull();
   });
 
   it("fetches and renders author's posts", () => {
