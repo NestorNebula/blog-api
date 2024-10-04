@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useOutletContext, useParams, Navigate } from 'react-router-dom';
 import { useData } from '../../hooks/useData';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Post from './Post';
@@ -17,7 +17,6 @@ function PostManager() {
     update,
   ]);
   const [fError, setFError] = useState(null);
-
   const updateStatus = async () => {
     const result = await fetch(
       `${API_URL}/posts/${postId}`,
@@ -40,6 +39,7 @@ function PostManager() {
         <div>Loading post...</div>
       ) : (
         <main>
+          {author.id === post.userId || <Navigate to="/" />}
           <header>
             <div>Post Manager</div>
           </header>
