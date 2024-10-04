@@ -9,7 +9,7 @@ function App() {
     <>
       <Navbar></Navbar>
       {author.role === 'AUTHOR' ? (
-        <Outlet author={author} />
+        <Outlet context={{ author }} />
       ) : (
         <section>
           <div>This page is for the blog authors.</div>
