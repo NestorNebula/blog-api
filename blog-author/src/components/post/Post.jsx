@@ -7,6 +7,7 @@ function Post({ post, details }) {
       <div>{post.title}</div>
       <div>{new Date(post.creationDate).toLocaleString()}</div>
       <div>{post.content}</div>
+      {post.published ? <div>Published</div> : <div>Unpublished</div>}
       {details ? (
         <div>
           {post.Comments.map((comment) => {
