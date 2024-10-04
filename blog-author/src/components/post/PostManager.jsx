@@ -18,9 +18,24 @@ function PostManager() {
     getFetchOptions('get', null),
     update
   );
+  const [fError, setFError] = useState(null);
+
+  const updateStatus = async () => {
+    const result = await fetch(
+      `${API_URL}/posts/${postId}`,
+      getFetchOptions('put', JSON.stringify({ published: !post.published }))
+    );
+    if (result.status >= 400) {
+      setFError('Error when updating post status.');
+    } else {
+      setFError(false);
+      setUpdate(!update);
+    }
+  };
 
   return (
     <>
+      {fError && <div>{fError}</div>}
       {error ? (
         <div>Error when loading post.</div>
       ) : loading ? (
@@ -37,6 +52,11 @@ function PostManager() {
               update={update}
               setUpdate={setUpdate}
             />
+            {post.published ? (
+              <button onClick={updateStatus}>Unpublish</button>
+            ) : (
+              <button onClick={updateStatus}>Publish</button>
+            )}
           </section>
         </main>
       )}
