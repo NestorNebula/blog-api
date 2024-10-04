@@ -35,7 +35,8 @@ const updatePost = [
     await prisma.updatePost(+req.params.postId, {
       title: req.body.title || post.title,
       content: req.body.content || post.content,
-      published: req.body.published || post.published,
+      published:
+        req.body.published !== null ? req.body.published : post.published,
     });
     res.sendStatus(201);
   },
