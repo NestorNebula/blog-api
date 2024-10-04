@@ -25,14 +25,16 @@ function Homepage() {
         <section>
           {posts.map((post) => {
             return (
-              <div key={post.id}>
-                <Post post={post} details={false} />
-                <Link to={`/posts/${post.id}`}>
-                  {post.Comments.length > 1
-                    ? `${post.Comments.length} comments`
-                    : `${post.Comments.length} comment`}
-                </Link>
-              </div>
+              post.published && (
+                <div key={post.id}>
+                  <Post post={post} details={false} />
+                  <Link to={`/posts/${post.id}`}>
+                    {post.Comments.length > 1
+                      ? `${post.Comments.length} comments`
+                      : `${post.Comments.length} comment`}
+                  </Link>
+                </div>
+              )
             );
           })}
         </section>
