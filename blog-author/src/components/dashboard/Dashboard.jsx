@@ -31,7 +31,7 @@ function Dashboard() {
             {posts.map((post) => {
               return (
                 <div key={post.id}>
-                  <Post post={post} />
+                  <Post post={post} details={false} />
                   <Link to={`posts/${post.id}`}>See details</Link>
                 </div>
               );
