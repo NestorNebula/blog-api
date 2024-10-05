@@ -3,6 +3,7 @@ import { useData } from '../../hooks/useData';
 import getFetchOptions from '../../helpers/fetchOptions';
 import sortPosts from '../../helpers/sortPosts';
 import Post from '../post/Post';
+import Sperror from '../error/Sperror';
 
 function Homepage() {
   const { user, API_URL } = useOutletContext();
@@ -19,7 +20,7 @@ function Homepage() {
         <div>{`Hello, ${user.username}`}</div>
       </header>
       {error ? (
-        <div>Error when loading data.</div>
+        <Sperror title={error} message={'Error when loading posts.'} />
       ) : loading ? (
         <div>Loading data...</div>
       ) : (

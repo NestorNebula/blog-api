@@ -6,6 +6,7 @@ import { verifyTitle } from '../../helpers/inputValidation';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Post from './Post';
 import Input from '../input/Input';
+import Sperror from '../error/Sperror';
 const API_URL = import.meta.env.VITE_API_URL;
 
 function PostManager() {
@@ -73,7 +74,7 @@ function PostManager() {
     <>
       {fError && <div>{fError}</div>}
       {error ? (
-        <div>Error when loading post.</div>
+        <Sperror title={error} message={'Error when loading post.'} />
       ) : loading ? (
         <div>Loading post...</div>
       ) : (

@@ -2,6 +2,7 @@ import { useOutletContext, Link } from 'react-router-dom';
 import { useData } from '../../hooks/useData';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Post from '../post/Post';
+import Sperror from '../error/Sperror';
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Dashboard() {
@@ -27,7 +28,7 @@ function Dashboard() {
   return (
     <>
       {error ? (
-        <div>Error when loading posts.</div>
+        <Sperror title={error} message={'Error when loading posts.'} />
       ) : loading ? (
         <div>Loading posts...</div>
       ) : (

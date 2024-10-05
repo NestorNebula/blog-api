@@ -4,6 +4,7 @@ import { useData } from '../../hooks/useData';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Post from './Post';
 import Input from '../input/Input';
+import Sperror from '../error/Sperror';
 
 function Postpage() {
   const { user, API_URL } = useOutletContext();
@@ -40,7 +41,7 @@ function Postpage() {
   return (
     <>
       {error ? (
-        <div>Error when loading post.</div>
+        <Sperror title={error} message={'Error when loading post.'} />
       ) : loading ? (
         <div>Loading post...</div>
       ) : (
