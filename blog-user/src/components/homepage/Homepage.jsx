@@ -5,6 +5,7 @@ import sortPosts from '../../helpers/sortPosts';
 import Post from '../post/Post';
 import Sperror from '../error/Sperror';
 import Loading from '../loading/Loading';
+import styles from './Homepage.module.css';
 
 function Homepage() {
   const { user, API_URL } = useOutletContext();
@@ -15,10 +16,10 @@ function Homepage() {
   } = useData(`${API_URL}/posts`, getFetchOptions('get', null));
 
   return (
-    <>
+    <main>
       <header>
-        <div>Homepage</div>
-        <div>{`Hello, ${user.username}`}</div>
+        <div className={styles.greeting}>{`Hello, ${user.username}`}</div>
+        <div className={styles.headerText}>Latest posts</div>
       </header>
       {error ? (
         <Sperror title={error} message={'Error when loading posts.'} />
@@ -27,13 +28,16 @@ function Homepage() {
       ) : (
         <>
           {sortPosts(posts)}
-          <section>
+          <section className={styles.posts}>
             {posts.map((post) => {
               return (
                 post.published && (
-                  <div key={post.id}>
+                  <div className={styles.post} key={post.id}>
                     <Post post={post} details={false} />
-                    <Link to={`/posts/${post.id}`}>
+                    <Link
+                      className={styles.postCommentsLength}
+                      to={`/posts/${post.id}`}
+                    >
                       {post.Comments.length > 1
                         ? `${post.Comments.length} comments`
                         : `${post.Comments.length} comment`}
@@ -45,7 +49,7 @@ function Homepage() {
           </section>
         </>
       )}
-    </>
+    </main>
   );
 }
 
