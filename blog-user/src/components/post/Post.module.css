@@ -19,8 +19,7 @@
 
 .postDate {
   font-size: 1.75rem;
-  position: relative;
-  top: 2.5px;
+  justify-self: end;
 }
 
 .postTitle {
@@ -37,7 +36,7 @@
 .postComments {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 3.5rem;
 }
 
 .postCommentsLength {
