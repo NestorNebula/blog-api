@@ -9,6 +9,7 @@ import {
 } from '../../helpers/inputValidation';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Input from '../input/Input';
+import styles from './Account.module.css';
 
 function Account() {
   const { user, API_URL } = useOutletContext();
@@ -80,59 +81,80 @@ function Account() {
   return (
     <main>
       {success && <Navigate to="/" />}
-      <section>
+      <header className={styles.header}>
+        <div>Your Account</div>
+      </header>
+      <section className={styles.account}>
         {form ? (
-          <form>
+          <form className={styles.accountForm}>
             {error && <div>{error}</div>}
-            <Input
-              name="username"
-              value={username}
-              update={updateUsername}
-              validation={usernameValidation}
-            />
-            <Input
-              name="email"
-              value={email}
-              update={updateEmail}
-              validation={emailValidation}
-              type="email"
-            />
-            <Input
-              name="password"
-              value={password}
-              update={updatePassword}
-              validation={passwordValidation}
-              type="password"
-            />
-            <Input
-              name="confirm"
-              value={confirm}
-              update={updateConfirm}
-              validation={confirmValidation}
-              type="password"
-              label="Confirm Password"
-            />
-            {user.role === 'User' && (
+            <div className={styles.input}>
               <Input
-                name="role"
-                value={role}
-                update={updateRole}
-                validation={roleValidation}
-                label="Author secret code (Leave blank if you do not have the code)"
+                name="username"
+                value={username}
+                update={updateUsername}
+                validation={usernameValidation}
               />
+            </div>
+            <div className={styles.input}>
+              <Input
+                name="email"
+                value={email}
+                update={updateEmail}
+                validation={emailValidation}
+                type="email"
+              />
+            </div>
+            <div className={styles.input}>
+              <Input
+                name="password"
+                value={password}
+                update={updatePassword}
+                validation={passwordValidation}
+                type="password"
+              />
+            </div>
+            <div className={styles.input}>
+              <Input
+                name="confirm"
+                value={confirm}
+                update={updateConfirm}
+                validation={confirmValidation}
+                type="password"
+                label="Confirm Password"
+              />
+            </div>
+            {user.role === 'User' && (
+              <div className={styles.input}>
+                <Input
+                  name="role"
+                  value={role}
+                  update={updateRole}
+                  validation={roleValidation}
+                  label="Author secret code (Leave blank if you do not have the code)"
+                />
+              </div>
             )}
-            <button type="button" onClick={submitUserUpdate}>
+            <button
+              className={styles.confirmBtn}
+              type="button"
+              onClick={submitUserUpdate}
+            >
               Confirm Update
             </button>
           </form>
         ) : (
           <>
-            <div>
-              <div>{user.username}</div>
-              <div> {user.email} </div>
-              <div> {user.role.toLowerCase()}</div>
+            <div className={styles.accountDetails}>
+              <div className={styles.accountUsername}>{user.username}</div>
+              <div className={styles.accountEmail}> {user.email} </div>
+              <div className={styles.accountRole}>
+                {user.role.toLowerCase()}
+              </div>
             </div>
-            <button onClick={updateForm}>Update Account</button>
+            <button className={styles.updateBtn} onClick={updateForm}>
+              Update Account
+            </button>
           </>
         )}
       </section>
