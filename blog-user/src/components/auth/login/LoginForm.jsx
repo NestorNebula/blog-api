@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Navigate, useOutletContext, Link } from 'react-router-dom';
 import getFetchOptions from '../../../helpers/fetchOptions';
 import Input from '../../input/Input';
+import styles from '../Auth.module.css';
 
 function LoginForm() {
   const { API_URL } = useOutletContext();
@@ -46,10 +47,10 @@ function LoginForm() {
   };
 
   return (
-    <>
+    <section className={styles.authSection}>
       {success && <Navigate to="/" />}
       {error && <div>{error}</div>}
-      <form action="" method="POST">
+      <form className={styles.authForm} action="" method="POST">
         <Input
           name="username"
           value={username}
@@ -69,13 +70,13 @@ function LoginForm() {
           Log In
         </button>
       </form>
-      <div>
+      <div className={styles.authLink}>
         <div>Don't have an account yet ?</div>
         <Link to="/auth/signup">
           <div>Sign Up</div>
         </Link>
       </div>
-    </>
+    </section>
   );
 }
 
