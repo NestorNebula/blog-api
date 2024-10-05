@@ -32,6 +32,7 @@ const routes = [
   {
     path: 'auth',
     element: <Auth />,
+    errorElement: <Error />,
     loader: () => authLoader(),
     children: [
       {

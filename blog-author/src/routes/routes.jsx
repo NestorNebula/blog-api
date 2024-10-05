@@ -30,6 +30,7 @@ const routes = [
   {
     path: '/login',
     element: <LoginForm />,
+    errorElement: <Error />,
     loader: () => authLoader(),
   },
 ];
