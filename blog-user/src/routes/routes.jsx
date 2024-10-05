@@ -5,12 +5,14 @@ import SignupForm from '../components/auth/signup/SignupForm';
 import Homepage from '../components/homepage/Homepage';
 import Postpage from '../components/post/Postpage';
 import Account from '../components/account/Account';
+import Error from '../components/error/Error';
 import { rootLoader, authLoader } from '../helpers/loaders';
 
 const routes = [
   {
     path: '/',
     element: <App />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
