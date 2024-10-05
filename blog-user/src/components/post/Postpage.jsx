@@ -6,6 +6,7 @@ import Post from './Post';
 import Input from '../input/Input';
 import Sperror from '../error/Sperror';
 import Loading from '../loading/Loading';
+import styles from './Postpage.module.css';
 
 function Postpage() {
   const { user, API_URL } = useOutletContext();
@@ -46,7 +47,7 @@ function Postpage() {
       ) : loading ? (
         <Loading />
       ) : (
-        <>
+        <section className={styles.section}>
           <Post
             post={post}
             details={true}
@@ -56,14 +57,19 @@ function Postpage() {
             API_URL={API_URL}
           />
           {postError && <div>{postError}</div>}
-          <Input
-            name="comment"
-            value={comment}
-            update={updateComment}
-            validation={{ isValid: true }}
-          />
-          <button onClick={postComment}>Post Comment as {user.username}</button>
-        </>
+          <div className={styles.commentInput}>
+            <Input
+              name="comment"
+              value={comment}
+              update={updateComment}
+              validation={{ isValid: true }}
+              label="Add a comment"
+            />
+            <button onClick={postComment}>
+              Post Comment as {user.username}
+            </button>
+          </div>
+        </section>
       )}
     </>
   );

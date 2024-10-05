@@ -1,0 +1,37 @@
+.section {
+  padding: 3rem 5rem;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section > div:first-child {
+  border: 1px solid gray;
+  box-shadow: 1px 1px 5px lightgray;
+  border-radius: 5px;
+  padding: 2rem;
+}
+
+.commentInput {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 1.5rem;
+  align-self: center;
+  width: 75%;
+}
+
+.commentInput > input {
+  padding: 1rem;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+.commentInput > button {
+  padding: 1rem;
+  background-color: #891bff;
+  color: white;
+  border-radius: 5px;
+  align-self: center;
+}
