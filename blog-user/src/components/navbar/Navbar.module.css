@@ -1,0 +1,23 @@
+nav {
+  font-size: 3rem;
+  padding: 3rem;
+  background-color: #5c40ff;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
