@@ -1,15 +1,19 @@
 import Comment from '../comment/Comment';
 import { formatDistanceToNow } from 'date-fns';
+import styles from './Post.module.css';
 
 function Post({ post, details, user, update, setUpdate, API_URL }) {
   return (
-    <div>
-      <div>{post.user.username}</div>
-      <div>{post.title}</div>
-      <div>{formatDistanceToNow(post.creationDate) + ' ago'}</div>
-      <div>{post.content}</div>
+    <div className={styles.post}>
+      <div className={styles.postUsername}>{post.user.username}</div>
+      <div className={styles.postDate}>
+        {formatDistanceToNow(post.creationDate) + ' ago'}
+      </div>
+      <div className={styles.postTitle}>{post.title}</div>
+      <div className={styles.postContent}>{post.content}</div>
       {details ? (
-        <div>
+        <div className={styles.postComments}>
+          <div className={styles.postCommentsTitle}>Comments</div>
           {post.Comments.map((comment) => {
             return (
               <Comment
@@ -24,7 +28,7 @@ function Post({ post, details, user, update, setUpdate, API_URL }) {
           })}
         </div>
       ) : details !== false ? (
-        <div>
+        <div className={styles.postCommentsLength}>
           {post.Comments.length > 1
             ? `${post.Comments.length} comments`
             : `${post.Comments.length} comment`}
