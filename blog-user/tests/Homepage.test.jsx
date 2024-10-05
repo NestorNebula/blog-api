@@ -42,7 +42,7 @@ describe('Homepage', () => {
         <Homepage />
       </MemoryRouter>
     );
-    expect(screen.queryByText(/homepage/i)).not.toBeNull();
+    expect(screen.queryByText(/hello, /i)).not.toBeNull();
   });
 
   it('renders fetched posts', () => {
