@@ -7,6 +7,7 @@ import getFetchOptions from '../../helpers/fetchOptions';
 import Post from './Post';
 import Input from '../input/Input';
 import Sperror from '../error/Sperror';
+import Loading from '../loading/Loading';
 const API_URL = import.meta.env.VITE_API_URL;
 
 function PostManager() {
@@ -76,7 +77,7 @@ function PostManager() {
       {error ? (
         <Sperror title={error} message={'Error when loading post.'} />
       ) : loading ? (
-        <div>Loading post...</div>
+        <Loading />
       ) : (
         <main>
           {author.id === post.userId || <Navigate to="/" />}

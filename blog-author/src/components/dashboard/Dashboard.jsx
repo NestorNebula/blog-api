@@ -3,6 +3,7 @@ import { useData } from '../../hooks/useData';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Post from '../post/Post';
 import Sperror from '../error/Sperror';
+import Loading from '../loading/Loading';
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Dashboard() {
@@ -30,7 +31,7 @@ function Dashboard() {
       {error ? (
         <Sperror title={error} message={'Error when loading posts.'} />
       ) : loading ? (
-        <div>Loading posts...</div>
+        <Loading />
       ) : (
         <main>
           {sortPosts(posts)}

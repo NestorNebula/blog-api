@@ -4,6 +4,7 @@ import getFetchOptions from '../../helpers/fetchOptions';
 import sortPosts from '../../helpers/sortPosts';
 import Post from '../post/Post';
 import Sperror from '../error/Sperror';
+import Loading from '../loading/Loading';
 
 function Homepage() {
   const { user, API_URL } = useOutletContext();
@@ -22,7 +23,7 @@ function Homepage() {
       {error ? (
         <Sperror title={error} message={'Error when loading posts.'} />
       ) : loading ? (
-        <div>Loading data...</div>
+        <Loading />
       ) : (
         <>
           {sortPosts(posts)}
