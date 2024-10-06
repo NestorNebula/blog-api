@@ -9,7 +9,7 @@ function Navbar() {
           <Link to="/">Homepage</Link>
         </li>
         <li>
-          <Link to="account">Account</Link>
+          <Link to="/account">Account</Link>
         </li>
       </ul>
     </nav>
