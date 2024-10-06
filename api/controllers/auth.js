@@ -46,12 +46,14 @@ const logIn = async (req, res) => {
   res.cookie('token', token, {
     httpOnly: true,
     maxAge: 900000,
-    sameSite: true,
+    sameSite: 'lax',
+    secure: true,
   });
   res.cookie('refresh', refreshToken, {
     httpOnly: true,
     expires: date,
-    sameSite: true,
+    sameSite: 'lax',
+    secure: true,
     path: '/auth',
   });
   res.json({ id: user.id });
@@ -65,7 +67,8 @@ const refreshAccessToken = (req, res) => {
       res.cookie('token', token, {
         httpOnly: true,
         maxAge: 900000,
-        sameSite: true,
+        sameSite: 'lax',
+        secure: true,
       });
       return res.json({ id: result });
     }
