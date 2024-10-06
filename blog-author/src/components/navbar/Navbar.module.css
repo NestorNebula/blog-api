@@ -1,0 +1,36 @@
+nav {
+  font-size: 4rem;
+  padding: 3rem;
+  background-color: #5c40ff;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  color: azure;
+}
+
+.blog {
+  color: white;
+}
+
+.icon {
+  width: 5.5rem;
+  filter: invert();
+  -webkit-user-drag: none;
+}
