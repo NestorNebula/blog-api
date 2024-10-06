@@ -1,0 +1,26 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 4rem;
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.error > a {
+  animation: errorLink 1s alternate infinite;
+}
+
+@keyframes errorLink {
+  from {
+    color: #2d66ff;
+  }
+  50% {
+    color: #5c40ff;
+  }
+  to {
+    color: #891bff;
+  }
+}
