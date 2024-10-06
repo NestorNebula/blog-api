@@ -9,6 +9,7 @@ import Input from '../input/Input';
 import Sperror from '../error/Sperror';
 import Loading from '../loading/Loading';
 const API_URL = import.meta.env.VITE_API_URL;
+import styles from './PostManager.module.css';
 
 function PostManager() {
   const [update, setUpdate] = useState(false);
@@ -81,12 +82,12 @@ function PostManager() {
       ) : (
         <main>
           {author.id === post.userId || <Navigate to="/" />}
-          <header>
+          <header className={styles.header}>
             <div>Post Manager</div>
           </header>
-          <section>
+          <section className={styles.section}>
             {edit ? (
-              <form>
+              <form className={styles.editForm}>
                 <Input
                   name="title"
                   value={title}
@@ -99,9 +100,13 @@ function PostManager() {
                   id="content"
                   value={content}
                   onChange={updateContent}
-                  rows={20}
+                  rows={10}
                 ></textarea>
-                <button type="button" onClick={updatePost}>
+                <button
+                  className={styles.postBtn}
+                  type="button"
+                  onClick={updatePost}
+                >
                   Update Post
                 </button>
               </form>
@@ -113,12 +118,20 @@ function PostManager() {
                   update={update}
                   setUpdate={setUpdate}
                 />
-                <button onClick={updateEdit}>Edit post</button>
-                {post.published ? (
-                  <button onClick={updateStatus}>Unpublish</button>
-                ) : (
-                  <button onClick={updateStatus}>Publish</button>
-                )}
+                <div className={styles.postBtns}>
+                  <button className={styles.postBtn} onClick={updateEdit}>
+                    Edit post
+                  </button>
+                  {post.published ? (
+                    <button className={styles.postBtn} onClick={updateStatus}>
+                      Unpublish
+                    </button>
+                  ) : (
+                    <button className={styles.postBtn} onClick={updateStatus}>
+                      Publish
+                    </button>
+                  )}
+                </div>
               </>
             )}
           </section>

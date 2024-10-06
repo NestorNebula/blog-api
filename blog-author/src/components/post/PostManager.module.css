@@ -1,0 +1,52 @@
+.header {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.section {
+  box-shadow: 1px 1px 5px #5c40ff;
+  border-radius: 5px;
+  padding: 3rem 5rem;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.postBtns {
+  display: flex;
+  gap: 1rem;
+  align-self: center;
+}
+
+.postBtn {
+  padding: 1rem;
+  background-color: #891bff;
+  color: white;
+  border-radius: 5px;
+  align-self: center;
+  font-size: 1.75rem;
+  width: fit-content;
+  justify-self: center;
+}
+
+.editForm {
+  display: grid;
+  font-size: 2rem;
+  gap: 1rem;
+}
+
+.editForm > label {
+  position: relative;
+  top: 1rem;
+  text-transform: capitalize;
+}
+.editForm textarea {
+  width: clamp(300px, 33vw, 500px);
+  resize: vertical;
+}
+
+.editForm textarea,
+.editForm input {
+  padding: 1rem;
+}
