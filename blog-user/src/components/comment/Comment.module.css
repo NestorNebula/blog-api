@@ -36,3 +36,17 @@
 .commentDelete > img {
   max-width: 3rem;
 }
+
+.commentConfirm {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.commentConfirm > button {
+  background-color: #891bff;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
