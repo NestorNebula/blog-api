@@ -1,0 +1,17 @@
+.loading {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: 3rem;
+  animation: loading 1s alternate infinite ease-in;
+  min-height: 80vh;
+}
+
+@keyframes loading {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
