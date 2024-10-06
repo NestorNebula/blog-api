@@ -40,7 +40,7 @@ function Dashboard() {
             <div
               className={styles.title}
             >{`${author.username}'s Dashboard`}</div>
-            <div className={styles.headerText}>Posts</div>
+            <div className={styles.headerText}>My Posts</div>
           </header>
           <section className={styles.posts}>
             {posts.map((post) => {
