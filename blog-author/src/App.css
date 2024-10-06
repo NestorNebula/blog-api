@@ -28,3 +28,20 @@ a:hover {
   text-decoration: underline;
   color: #891bff;
 }
+
+.background {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom right,
+    white 50px,
+    #5c40ff 50px 51px,
+    white 51px 121px
+  );
+  z-index: -1;
+  opacity: 0.1;
+}
+
+section {
+  background-color: white;
+}

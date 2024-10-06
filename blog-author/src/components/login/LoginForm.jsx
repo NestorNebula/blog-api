@@ -49,6 +49,7 @@ function LoginForm() {
   return (
     <>
       <Navbar />
+      <div className="background"></div>
       {success && <Navigate to="/" />}
       {error && <div>{error}</div>}
       <section className={styles.loginSection}>

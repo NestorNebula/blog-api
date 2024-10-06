@@ -9,6 +9,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <div className="background"></div>
       <Outlet context={{ user, API_URL }} />
       <Footer />
     </>

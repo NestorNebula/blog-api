@@ -7,6 +7,7 @@ function Auth() {
   return (
     <>
       <Navbar />
+      <div className="background"></div>
       <Outlet context={{ API_URL }} />
       <Footer />
     </>

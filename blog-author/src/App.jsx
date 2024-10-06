@@ -9,6 +9,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <div className="background"></div>
       {author.role === 'AUTHOR' ? (
         <Outlet context={{ author }} />
       ) : (
