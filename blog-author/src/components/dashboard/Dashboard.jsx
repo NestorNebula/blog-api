@@ -5,6 +5,7 @@ import Post from '../post/Post';
 import Sperror from '../error/Sperror';
 import Loading from '../loading/Loading';
 const API_URL = import.meta.env.VITE_API_URL;
+import styles from './Dashboard.module.css';
 
 function Dashboard() {
   const { author } = useOutletContext();
@@ -36,15 +37,19 @@ function Dashboard() {
         <main>
           {sortPosts(posts)}
           <header>
-            <div>{`${author.username}'s Dashboard`}</div>
+            <div
+              className={styles.title}
+            >{`${author.username}'s Dashboard`}</div>
+            <div className={styles.headerText}>Posts</div>
           </header>
-          <section>
-            <div>Posts</div>
+          <section className={styles.posts}>
             {posts.map((post) => {
               return (
-                <div key={post.id}>
+                <div className={styles.post} key={post.id}>
                   <Post post={post} details={false} />
-                  <Link to={`posts/${post.id}`}>See details</Link>
+                  <Link className={styles.details} to={`posts/${post.id}`}>
+                    See details
+                  </Link>
                 </div>
               );
             })}

@@ -1,0 +1,59 @@
+.post {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: clamp(300px, 66vw, 1000px);
+  align-items: center;
+  gap: 2rem 4rem;
+}
+
+.postTitle,
+.postContent,
+.postPublished,
+.postComments,
+.postCommentsLength {
+  grid-column: 1 / 3;
+}
+
+.postUsername {
+  font-size: 2.5rem;
+}
+
+.postDate {
+  font-size: 1.75rem;
+  justify-self: end;
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.postTitle {
+  justify-self: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.postContent {
+  white-space: pre;
+  font-size: 2rem;
+}
+
+.postPublished {
+  justify-self: end;
+  font-size: 1.25rem;
+}
+
+.postComments {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.postCommentsLength {
+  justify-self: end;
+}
+
+.postCommentsTitle {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: bold;
+  padding-top: 1.5rem;
+  border-top: 1px solid lightgray;
+}

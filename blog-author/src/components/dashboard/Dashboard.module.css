@@ -1,0 +1,46 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem 5rem;
+}
+
+header {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.title {
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.headerText {
+  font-size: 2rem;
+  align-self: start;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 0 2rem;
+  align-self: center;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+  box-shadow: 1px 1px 5px #5c40ff;
+  border-radius: 5px;
+}
+
+.details {
+  align-self: end;
+  font-size: 1.25rem;
+}

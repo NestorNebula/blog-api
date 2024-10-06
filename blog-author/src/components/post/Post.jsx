@@ -1,15 +1,23 @@
 import Comment from '../comment/Comment';
+import styles from './Post.module.css';
 
 function Post({ post, details, update, setUpdate }) {
   return (
-    <div>
-      <div>{post.user.username}</div>
-      <div>{post.title}</div>
-      <div>{new Date(post.creationDate).toLocaleString()}</div>
-      <div>{post.content}</div>
-      {post.published ? <div>Published</div> : <div>Unpublished</div>}
+    <section className={styles.post}>
+      <div className={styles.postUsername}>{post.user.username}</div>
+      <div className={styles.postTitle}>{post.title}</div>
+      <div className={styles.postDate}>
+        {new Date(post.creationDate).toLocaleString()}
+      </div>
+      <div className={styles.postContent}>{post.content}</div>
+      {post.published ? (
+        <div className={styles.postPublished}>Published</div>
+      ) : (
+        <div className={styles.postPublished}>Unpublished</div>
+      )}
       {details ? (
-        <div>
+        <div className={styles.postComments}>
+          <div className={styles.postCommentsTitle}></div>
           {post.Comments.map((comment) => {
             return (
               <Comment
@@ -22,13 +30,13 @@ function Post({ post, details, update, setUpdate }) {
           })}
         </div>
       ) : details !== false ? (
-        <div>
+        <div className={styles.postCommentLength}>
           {post.Comments.length > 1
             ? `${post.Comments.length} comments`
             : `${post.Comments.length} comment`}
         </div>
       ) : null}
-    </div>
+    </section>
   );
 }
 
