@@ -1,0 +1,52 @@
+.comment {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 1rem 2.5rem;
+  font-size: 1.35rem;
+  padding: 0.25rem;
+  align-items: center;
+}
+
+.commentContent,
+.commentConfirm {
+  grid-column: 1 / 4;
+}
+
+.commentUsername {
+  font-size: 1.75rem;
+}
+
+.commentDate {
+  font-size: 1.25rem;
+  position: relative;
+  top: 2px;
+}
+
+.commentContent {
+  padding-left: 1rem;
+}
+
+.commentDelete {
+  grid-area: 1 / 3 / 2 / 4;
+  width: fit-content;
+  padding: 0.5rem;
+  background-color: inherit;
+}
+
+.commentDelete > img {
+  max-width: 3rem;
+}
+
+.commentConfirm {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.commentConfirm > button {
+  background-color: #891bff;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
