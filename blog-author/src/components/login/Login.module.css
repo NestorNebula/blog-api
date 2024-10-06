@@ -1,0 +1,59 @@
+.loginSection {
+  padding: 5rem;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.loginForm {
+  display: grid;
+  font-size: 2rem;
+  width: clamp(200px, 20vw, 500px);
+  align-self: center;
+}
+
+.loginForm label {
+  margin-top: 1rem;
+  text-transform: capitalize;
+}
+
+.loginForm span {
+  color: red;
+  max-width: 30ch;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+}
+
+.loginForm button {
+  background-color: #891bff;
+  color: white;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 5px;
+}
+
+.loginInfos {
+  display: flex;
+  gap: 10rem;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.loginInfos > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.loginInfos > div > div:first-child {
+  max-width: 30ch;
+}
+
+.loginLink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
