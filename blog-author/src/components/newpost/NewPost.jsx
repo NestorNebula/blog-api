@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useOutletContext, Navigate } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import { verifyTitle } from '../../helpers/inputValidation';
@@ -20,9 +20,9 @@ function NewPost() {
   const updateContent = (e) => {
     setContent(e.target.value);
   };
-  const [published, setPublished] = useState(false);
+  const published = useRef(false);
   const updatePublished = () => {
-    setPublished(!published);
+    published.current = !published.current;
   };
 
   const createPost = async () => {
@@ -32,7 +32,10 @@ function NewPost() {
     if (!isValid) return;
     const response = await fetch(
       `${API_URL}/posts`,
-      getFetchOptions('post', JSON.stringify({ title, content, published }))
+      getFetchOptions(
+        'post',
+        JSON.stringify({ title, content, published: published.current })
+      )
     );
     if (response.status >= 400) {
       setError('Error when creating Post.');
