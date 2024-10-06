@@ -1,0 +1,37 @@
+footer {
+  margin-top: auto;
+  background-color: #5c40ff;
+  padding: 2rem;
+  font-size: 1.25rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.credits {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.cr {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.ghIcon {
+  width: 3rem;
+  filter: invert();
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: azure;
+}
