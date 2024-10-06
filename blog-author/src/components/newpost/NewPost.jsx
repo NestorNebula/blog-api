@@ -5,6 +5,7 @@ import { verifyTitle } from '../../helpers/inputValidation';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Input from '../input/Input';
 const API_URL = import.meta.env.VITE_API_URL;
+import styles from './NewPost.module.css';
 
 function NewPost() {
   const { author } = useOutletContext();
@@ -43,13 +44,13 @@ function NewPost() {
   return (
     <main>
       {submit && <Navigate to="/" />}
-      <header>
+      <header className={styles.header}>
         <div>Create New Post</div>
         <div>as {author.username}</div>
       </header>
       {error && <div>{error}</div>}
-      <section>
-        <form>
+      <section className={styles.section}>
+        <form className={styles.newForm}>
           <Input
             name="title"
             value={title}
@@ -62,21 +63,21 @@ function NewPost() {
             id="content"
             value={content}
             onChange={updateContent}
-            rows={20}
+            rows={10}
           ></textarea>
-          <div>Publish Post ?</div>
-          <button
-            type="button"
-            aria-label={`The post status is set to ${
-              published ? 'published' : 'unpublished'
-            }, click the button to set it to ${
-              published ? 'unpublished' : 'published'
-            }`}
+          <input
+            className={styles.published}
+            id="published"
+            name="published"
+            type="checkbox"
             onClick={updatePublished}
+          />
+          <label htmlFor="published">Publish Post ?</label>
+          <button
+            className={styles.createBtn}
+            type="button"
+            onClick={createPost}
           >
-            Publish
-          </button>
-          <button type="button" onClick={createPost}>
             Create Post
           </button>
         </form>
