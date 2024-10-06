@@ -5,6 +5,7 @@ import { Navigate, Link } from 'react-router-dom';
 import getFetchOptions from '../../helpers/fetchOptions';
 import Input from '../input/Input';
 import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 const API_URL = import.meta.env.VITE_API_URL;
 const BLOG_URL = import.meta.env.VITE_BLOG_URL;
 import styles from './Login.module.css';
@@ -89,6 +90,7 @@ function LoginForm() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

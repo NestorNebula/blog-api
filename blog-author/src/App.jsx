@@ -1,14 +1,14 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
 import { Link, useLoaderData, Outlet } from 'react-router-dom';
-import sortPosts from './helpers/sortPosts';
 const BLOG_URL = import.meta.env.VITE_BLOG_URL;
 
 function App() {
   const { user: author } = useLoaderData();
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar />
       {author.role === 'AUTHOR' ? (
         <Outlet context={{ author }} />
       ) : (
@@ -20,6 +20,7 @@ function App() {
           </div>
         </section>
       )}
+      <Footer />
     </>
   );
 }
