@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/NestorNebula/blog-api/issues"
   },
-  "homepage": "https://github.com/NestorNebula/blog-api/tree/main#readme",
+  "homepage": "https://github.com/NestorNebula/blog-api/tree/main/api#readme",
   "description": "",
   "devDependencies": {
     "prisma": "^5.19.1"
