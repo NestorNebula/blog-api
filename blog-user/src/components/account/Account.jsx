@@ -124,7 +124,7 @@ function Account() {
                 label="Confirm Password"
               />
             </div>
-            {user.role === 'User' && (
+            {user.role === 'USER' && (
               <div className={styles.input}>
                 <Input
                   name="role"
