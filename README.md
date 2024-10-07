@@ -49,11 +49,11 @@ The second Frontend App which is only accessible for users considered as "Author
 
 See each app installation guide in its own README file.
 
-[API](https://github.com/NestorNebula/blog-api/tree/main/api#README.md)
+[API](https://github.com/NestorNebula/blog-api/tree/main/api#readme)
 
-[Blog-User](https://github.com/NestorNebula/blog-api/tree/main/blog-user#README.md)
+[Blog-User](https://github.com/NestorNebula/blog-api/tree/main/blog-user#readme)
 
-[Blog-Author](https://github.com/NestorNebula/blog-api/tree/main/blog-author#README.md)
+[Blog-Author](https://github.com/NestorNebula/blog-api/tree/main/blog-author#readme)
 
 ## Contributing
 
