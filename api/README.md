@@ -44,10 +44,10 @@ This app is a backend REST API to handle authentication and resources requests f
 
    ```
    # SSH:
-   git remote add upstream git@github.com:blog-api/<repo name>.git
+   git remote add upstream git@github.com:NestorNebula/blog-api.git
 
    # HTTPS:
-   git remote add upstream https://github.com/blog-api/<repo name>.git
+   git remote add upstream https://github.com/NestorNebula/blog-api.git
    ```
 
 4. Go to the app directory
